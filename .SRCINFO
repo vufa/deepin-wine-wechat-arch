@@ -1,0 +1,33 @@
+pkgbase = deepin-wine-wechat
+	pkgdesc = Tencent WeChat (com.wechat) on Deepin Wine For Archlinux
+	pkgver = 2.6.2
+	pkgrel = 0
+	url = https://weixin.qq.com/
+	install = deepin-wine-wechat.install
+	arch = x86_64
+	license = custom
+	depends = p7zip
+	depends = wine
+	depends = wine-mono
+	depends = wine_gecko
+	depends = xorg-xwininfo
+	depends = xdotool
+	depends = wqy-microhei
+	depends = adobe-source-han-sans-cn-fonts
+	depends = lib32-alsa-lib
+	depends = lib32-alsa-plugins
+	depends = lib32-libpulse
+	depends = lib32-openal
+	depends = lib32-mpg123
+	conflicts = deepin-wechat
+	source = https://mirrors.ustc.edu.cn/deepin/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_2.6.2.31deepin0_i386.deb
+	source = run.sh
+	source = reg_files.tar.bz2
+	source = update.policy
+	md5sums = c66a173fe6817afd898e0061d9eaf42e
+	md5sums = 8a47e1c10ff08a9592fbb5a76dc69982
+	md5sums = ebde755e3bd213550f5ccc69d3192060
+	md5sums = a66646b473a3fbad243ac1afd64da07a
+
+pkgname = deepin-wine-wechat
+

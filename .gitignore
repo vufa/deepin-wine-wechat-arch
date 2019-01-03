@@ -1,0 +1,5 @@
+.directory
+deepin.com.wechat*
+deepin-wine-wechat-*.tar.xz
+pkg/
+src/

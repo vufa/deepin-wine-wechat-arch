@@ -1,0 +1,7 @@
+post_upgrade() {
+    find /home -maxdepth 2 -name ".deepinwine" -exec rm -f \{\}/Deepin-WeChat/reinstalled \;
+}
+pre_remove() {
+    echo "deleting the WeChat bottle..."
+    find /home -maxdepth 2 -name ".deepinwine" -exec rm -rf \{\}/Deepin-WeChat/ \;
+}

@@ -8,7 +8,8 @@ Deepin打包的微信(WeChat)容器移植到Archlinux
 
 * [Wuhan Deepin Technology Co.,Ltd.](http://www.deepin.org/)
 
-**注意：**微信最新版本是2.6.6(2019.1.3)，经测试能正常运行，但不能固定下载的版本(下载文件名都是WeChatSetup，不能确定下载到的是2.6.6还是更新的版本，也没有找到提供历史版本下载)，所以还是直接使用deepin官方打包的2.6.2版本。
+**注意：**
+微信最新版本是2.6.6(2019.1.3)，经测试能正常运行，但不能固定下载的版本(下载文件名都是WeChatSetup，不能确定下载到的是2.6.6还是更新的版本，也没有找到提供历史版本下载)，所以还是直接使用deepin官方打包的2.6.2版本。
 
 存在如下问题：
   * 1.不能视频通话
@@ -50,7 +51,9 @@ yaourt deepin-wine-wechat
 * 运行开始菜单中创建的WeChat，点击运行
 * 默认使用文泉驿微米黑(`wqy-microhei`)字体，要使用其他字体，如 微软雅黑或者微软宋体放进`～/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`中。
 ## 常见问题
+
 * 1.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
 * 2.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
 ## 更新日志
+
 * 2019-01-03 WeChat-2.6.2

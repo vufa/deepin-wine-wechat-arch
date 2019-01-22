@@ -2,13 +2,15 @@
 
 Deepin打包的微信(WeChat)容器移植到Archlinux
 
+构建状态: [![travis-ci](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master)](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch)
+
 感谢:
 
 * [Wuhan Deepin Technology Co.,Ltd.](http://www.deepin.org/)
 
 **注意：**微信最新版本是2.6.6(2019.1.3)，经测试能正常运行，但不能固定下载的版本(下载文件名都是WeChatSetup，不能确定下载到的是2.6.6还是更新的版本，也没有找到提供历史版本下载)，所以还是直接使用deepin官方打包的2.6.2版本。
 
-* 存在如下问题：
+存在如下问题：
   * 1.不能视频通话
   * 2.不能截图(微信2.6.2和最新的2.6.6,2019.1.3)
   * 3.请用[issue](https://github.com/countstarlight/deepin-wine-wechat-arch/issues)反馈给我

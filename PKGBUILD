@@ -18,7 +18,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "update.policy")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
   '8a47e1c10ff08a9592fbb5a76dc69982'
-  'ebde755e3bd213550f5ccc69d3192060'
+  '33809717e8c3d128b4925df060041e82'
   'a66646b473a3fbad243ac1afd64da07a')
 
 build() {

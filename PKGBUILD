@@ -1,7 +1,8 @@
 # Maintainer: CountStarlight <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=2.6.2
+pkgver=2.6.7.57
+wechat_installer=WeChat_C1022
 deepinwechatver=2.6.2.31deepin0
 pkgrel=1
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
@@ -13,11 +14,13 @@ conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
+  "https://dlglobal.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
   "reg_files.tar.bz2"
   "update.policy")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
-  '8a47e1c10ff08a9592fbb5a76dc69982'
+  'dbadd15d78384c68d33b19819eaaa9fe'
+  '7aa0649cf9ebd87db080d775e9d7a083'
   '33809717e8c3d128b4925df060041e82'
   'a66646b473a3fbad243ac1afd64da07a')
 
@@ -28,6 +31,8 @@ build() {
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.wechat.desktop"
   msg "Extracting Deepin Wine WeChat archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-WeChat/files.7z" -o"${srcdir}/deepinwechatdir"
+  msg "Removing original outdated WeChat directory ..."
+  rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
   msg "Adding config files and fonts"
   tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
   cp userdef.reg "${srcdir}/deepinwechatdir/userdef.reg"
@@ -47,4 +52,5 @@ package() {
   install -d "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
+  install -m644 "${srcdir}/${wechat_installer}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
 }

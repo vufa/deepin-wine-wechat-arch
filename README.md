@@ -5,7 +5,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.6.2-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.6.7.57-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -15,15 +15,12 @@
   </a>
 </p>
 
-Deepin打包的微信(WeChat)容器移植到Archlinux
+Deepin打包的微信(WeChat)容器移植到Archlinux，微信安装包替换为官方最新
 
 - [安装](#安装)
 - [常见问题](#常见问题)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
-
-**注意：**
-微信最新版本是2.6.6(2019.1.3)，经测试能正常运行，但不能固定下载的版本(下载文件名都是WeChatSetup，不能确定下载到的是2.6.6还是更新的版本，也没有找到提供历史版本下载)，所以还是直接使用deepin官方打包的2.6.2版本。
 
 ## 安装
 
@@ -57,13 +54,13 @@ yaourt deepin-wine-wechat
  makepkg -si
 ```
 
-* 直接运行应用菜单中创建的WeChat快捷方式
-* 默认使用文泉驿微米黑(`wqy-microhei`)字体，要使用其他字体，如 微软雅黑或者微软宋体放进`～/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`中。
+* 运行应用菜单中创建的WeChat，开始安装
+* 安装完可直接启动
 
 ## 常见问题
 
 - [ ] 1.不能视频通话
-- [ ] 2.不能截图(微信2.6.2和最新的2.6.6,2019.1.3)
+- [ ] 2.不能截图
 - [x] 3.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
 - [x] 4.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
 
@@ -73,4 +70,5 @@ yaourt deepin-wine-wechat
 
 ## 更新日志
 
+* 2019-04-03 WeChat-2.6.7.57
 * 2019-01-03 WeChat-2.6.2

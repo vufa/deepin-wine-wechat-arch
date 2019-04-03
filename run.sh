@@ -8,6 +8,7 @@
 WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
 APPVER="2.6.2.31deepin0"
+WECHAT_INSTALLER="WeChat_C1022"
 APPTAR="files.7z"
 PACKAGENAME="com.wechat"
 WINE_CMD="wine"
@@ -21,7 +22,16 @@ HelpApp()
 }
 CallApp()
 {
-    env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+	if [ ! -f "$WINEPREFIX/reinstalled" ]
+	then
+		touch $WINEPREFIX/reinstalled
+		env WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER.exe
+	else
+        #Support use native file dialog
+        export ATTACH_FILE_DIALOG=1
+
+        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+	fi
 }
 ExtractApp()
 {

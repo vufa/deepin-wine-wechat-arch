@@ -25,7 +25,7 @@ CallApp()
 	if [ ! -f "$WINEPREFIX/reinstalled" ]
 	then
 		touch $WINEPREFIX/reinstalled
-		env WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER.exe
+		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER.exe
 	else
         #Support use native file dialog
         export ATTACH_FILE_DIALOG=1

@@ -4,7 +4,7 @@ pkgname=deepin-wine-wechat
 pkgver=2.6.7.57
 wechat_installer=WeChat_C1022
 deepinwechatver=2.6.2.31deepin0
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -16,13 +16,11 @@ _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
   "https://dlglobal.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
-  "reg_files.tar.bz2"
-  "update.policy")
+  "reg.patch")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
   'dbadd15d78384c68d33b19819eaaa9fe'
   '1470529573bf3f5721e22e91beb0218c'
-  '33809717e8c3d128b4925df060041e82'
-  'a66646b473a3fbad243ac1afd64da07a')
+  '9c9d51ff585ff630473ce827159a8230')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -33,12 +31,9 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-WeChat/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Removing original outdated WeChat directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
-  msg "Adding config files and fonts"
-  tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
-  cp userdef.reg "${srcdir}/deepinwechatdir/userdef.reg"
-  cp system.reg "${srcdir}/deepinwechatdir/system.reg"
-  cp update.policy "${srcdir}/deepinwechatdir/update.policy"
-  cp user.reg "${srcdir}/deepinwechatdir/user.reg"
+  msg "Patching reg files ..."
+  patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
+  msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepinwechatdir/*"

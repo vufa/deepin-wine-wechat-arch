@@ -15,7 +15,7 @@
   </a>
 </p>
 
-Deepin打包的微信(WeChat)容器移植到Archlinux，微信安装包替换为官方最新
+Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`，微信安装包替换为官方最新
 
 - [安装](#安装)
 - [常见问题](#常见问题)

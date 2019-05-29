@@ -5,7 +5,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.6.7.57-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.6.8.51-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -15,7 +15,7 @@
   </a>
 </p>
 
-Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`，微信安装包替换为官方最新
+Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`，包含定制的注册表配置，微信安装包替换为官方最新
 
 - [安装](#安装)
 - [常见问题](#常见问题)
@@ -39,9 +39,9 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-* 1.已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可直接安装:
+* 1.已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可使用 `yay` 或 `yaourt` 安装:
 ```shell
-yaourt deepin-wine-wechat
+yay -S deepin-wine-wechat
 ```
 
 * 2.手动安装
@@ -70,5 +70,6 @@ yaourt deepin-wine-wechat
 
 ## 更新日志
 
+* 2019-05-29 WeChat-2.6.8.51
 * 2019-04-03 WeChat-2.6.7.57
 * 2019-01-03 WeChat-2.6.2

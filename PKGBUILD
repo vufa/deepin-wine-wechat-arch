@@ -1,10 +1,10 @@
 # Maintainer: CountStarlight <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=2.6.7.57
+pkgver=2.6.8.51
 wechat_installer=WeChat_C1022
 deepinwechatver=2.6.2.31deepin0
-pkgrel=2
+pkgrel=1
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -18,7 +18,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "run.sh"
   "reg.patch")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
-  'dbadd15d78384c68d33b19819eaaa9fe'
+  'fd1cac1c27a84cdc8c92f5e7b6f149a7'
   '1470529573bf3f5721e22e91beb0218c'
   '9c9d51ff585ff630473ce827159a8230')
 

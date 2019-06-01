@@ -1,4 +1,5 @@
-# 在Archlinux及衍生发行版上运行微信(WeChat)
+在Archlinux及衍生发行版上运行微信(WeChat)
+=======
 
 <p align="center">
   <a href="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch">
@@ -10,6 +11,9 @@
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
   </a>
+  <a href="https://github.com/countstarlight/deepin-wine-wechat-arch/releases">
+    <img src="https://img.shields.io/github/downloads/countstarlight/deepin-wine-wechat-arch/total.svg" alt="GitHub Release">
+  </a>
   <a href="https://github.com/countstarlight/deepin-wine-wechat-arch/issues">
     <img src="https://img.shields.io/github/issues/countstarlight/deepin-wine-wechat-arch.svg" alt="GitHub Issues">
   </a>
@@ -17,10 +21,17 @@
 
 Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`，包含定制的注册表配置，微信安装包替换为官方最新
 
+<!-- TOC -->
+
 - [安装](#安装)
+    - [从 AUR 安装](#从-aur-安装)
+    - [从 GitHub Release 安装](#从-github-release-安装)
+    - [从源码安装](#从源码安装)
 - [常见问题](#常见问题)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
+
+<!-- /TOC -->
 
 ## 安装
 
@@ -39,12 +50,25 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-* 1.已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可使用 `yay` 或 `yaourt` 安装:
+### 从 AUR 安装
+
+已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可使用 `yay` 或 `yaourt` 安装:
+
 ```shell
 yay -S deepin-wine-wechat
 ```
 
-* 2.手动安装
+### 从 GitHub Release 安装
+
+> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
+
+在[GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases)页面下载 `.pkg.tar.xz`后缀的安装包，使用`pacman`安装：
+
+```bash
+sudo pacman -U #下载的包名
+```
+
+### 从源码安装
 
 ```shell
  git clone https://github.com/countstarlight/deepin-wine-wechat-arch.git

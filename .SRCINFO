@@ -20,12 +20,12 @@ pkgbase = deepin-wine-wechat
 	depends = lib32-libldap
 	conflicts = deepin-wechat
 	source = https://mirrors.ustc.edu.cn/deepin/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_2.6.2.31deepin0_i386.deb
-	source = https://dlglobal.qq.com/weixin/Windows/WeChat_C1022.exe
+	source = https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
 	source = run.sh
 	source = reg.patch
 	md5sums = c66a173fe6817afd898e0061d9eaf42e
-	md5sums = fd1cac1c27a84cdc8c92f5e7b6f149a7
-	md5sums = 1470529573bf3f5721e22e91beb0218c
+	md5sums = 06b1072dfeb2eba50027cd9b237accff
+	md5sums = 88abd550ffce483a3f9627d84e4d5e3a
 	md5sums = 9c9d51ff585ff630473ce827159a8230
 
 pkgname = deepin-wine-wechat

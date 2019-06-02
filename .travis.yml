@@ -26,3 +26,16 @@ arch:
 
 script:
 - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key: $GH_TOKEN
+  file_glob: true
+  file:
+    - "deepin-wine-wechat-*-x86_64.pkg.tar.xz"
+  on:
+    tags: true
+    all_branches: true
+    repo: countstarlight/deepin-wine-wechat-arch

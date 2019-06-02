@@ -8,7 +8,7 @@
 WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
 APPVER="2.6.2.31deepin0"
-WECHAT_INSTALLER="WeChat_C1022"
+WECHAT_INSTALLER="WeChatSetup"
 APPTAR="files.7z"
 PACKAGENAME="com.wechat"
 WINE_CMD="wine"

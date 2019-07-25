@@ -24,7 +24,7 @@ pkgbase = deepin-wine-wechat
 	source = run.sh
 	source = reg.patch
 	md5sums = c66a173fe6817afd898e0061d9eaf42e
-	md5sums = f4b84e3c21c3bd7f2217b144fdf8ebe0
+	md5sums = 55704ea3ffe49ca189a0c1ade1e4d350
 	md5sums = 88abd550ffce483a3f9627d84e4d5e3a
 	md5sums = 9c9d51ff585ff630473ce827159a8230
 

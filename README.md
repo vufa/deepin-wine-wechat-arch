@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.6.8.52-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.6.8.65-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -94,6 +94,7 @@ sudo pacman -U #下载的包名
 
 ## 更新日志
 
+* 2019-07-25 WeChat-2.6.8.65
 * 2019-06-02 WeChat-2.6.8.52
 * 2019-05-29 WeChat-2.6.8.51
 * 2019-04-03 WeChat-2.6.7.57

@@ -84,30 +84,47 @@ sudo pacman -U #下载的包名
 
 ## 切换到 `deepin-wine`
 
-由于原版 `wine` 在DDE(Deepin Desktop Environment)上，存在托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))，边框穿透显示([deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15))等问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
+由于原版 `wine` 在DDE(Deepin Desktop Environment)上，存在托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))，边框穿透显示([deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15)), 无法截图等问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
 
-根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，由 [@feileb](https://github.com/feileb) 和 [@violetbobo](https://github.com/violetbobo) 提供的方法：
+根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
 * 1. 安装 deepin-wine
 
 ```bash
 yay -S deepin-wine
+# 安装deepin-wine依赖
+sudo pacman -Sy gnome-settings-daemon
 ```
+
 
 * 2. 修改 `deepin-wine-wechat` 的启动文件
 
-/opt/deepinwine/tools/run.sh
+1）修改如下两个文件中的 `WINE_CMD` 的值：
 
-/opt/deepinwine/apps/Deepin-WeChat/run.sh
+`/opt/deepinwine/apps/Deepin-WeChat/run.sh`
 
-修改这两个文件中的 `WINE_CMD` 的值：
+` /opt/deepinwine/tools/run.sh`
 
 ```diff
 -WINE_CMD="wine"
 +WINE_CMD="deepin-wine"
 ```
 
+2) 并在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 文件开头插入一行
+
+```
+/usr/lib/gsd-xsettings
+```
+
+3) 删除原先的微信目录
+
+```
+rm -rf ~/.deepinwine/Deepin-WeChat
+```
+
 **注意：对 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 的修改会在 `deepin-wine-wechat` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
+
+
 
 * 3. 修复 `deepin-wine` 字体渲染发虚
 
@@ -120,7 +137,7 @@ yay -S lib32-freetype2-infinality-ultimate
 ## 常见问题
 
 - [ ] 1.不能视频通话
-- [ ] 2.不能截图
+- [x] 2.不能截图
 - [x] 3.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
 - [x] 4.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
 

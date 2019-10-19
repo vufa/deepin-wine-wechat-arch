@@ -3,7 +3,7 @@ sudo: required
 services:
 - docker
 
-arch:
+archlinux:
   repos:
   - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:

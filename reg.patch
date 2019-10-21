@@ -9,18 +9,18 @@ diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
 -#time=1d34331b1382cd2
 -"CSDVersion"="Service Pack 3"
 -"CurrentBuildNumber"="2600"
-+[Software\\Microsoft\\Windows NT\\CurrentVersion] 1553355758
-+#time=1d4e18f0af44402
-+"CSDVersion"=""
-+"CurrentBuild"="17134"
-+"CurrentBuildNumber"="17134"
++[Software\\Microsoft\\Windows NT\\CurrentVersion] 1571657811
++#time=1d58803d4d74e20
++"CSDVersion"="Service Pack 1"
++"CurrentBuild"="7601"
++"CurrentBuildNumber"="7601"
  "CurrentType"="Uniprocessor Free"
 -"CurrentVersion"="5.1"
-+"CurrentVersion"="10.0"
++"CurrentVersion"="6.1"
  "InstallDate"=dword:4be5019a
  "ProductId"="12345-oem-0000001-54321"
 -"ProductName"="Microsoft Windows XP"
-+"ProductName"="Microsoft Windows 10"
++"ProductName"="Microsoft Windows 7"
  "RegisteredOrganization"=""
  "RegisteredOwner"=""
  "SystemRoot"="C:\\windows"

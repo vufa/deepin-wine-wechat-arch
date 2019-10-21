@@ -48,4 +48,13 @@ package() {
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m644 "${srcdir}/${wechat_installer}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
+  msg "Printing help info ..."
+  echo -e "\033[0;34m============================提示/INFO==============================="
+  echo -e "\033[0;34m* 报告问题(Report issue):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/issues"
+  echo -e "\033[0;34m* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch"
+  echo -e "\033[0;34m* 安装包下载(Installation package download):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/releases"
+  echo -e "\033[0;34m===================================================================="
 }

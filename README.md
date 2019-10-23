@@ -27,12 +27,15 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
     - [从AUR安装](#从aur安装)
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
+- [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
-    - [1. 安装 deepin-wine](#1-安装-deepin-wine)
-    - [2. 修改 `deepin-wine-wechat` 的启动文件](#2-修改-deepin-wine-wechat-的启动文件)
-    - [3. 如果是 GNOME 桌面](#3-如果是-gnome-桌面)
-    - [4. 删除原先的微信目录](#4-删除原先的微信目录)
-    - [5. 修复 `deepin-wine` 字体渲染发虚](#5-修复-deepin-wine-字体渲染发虚)
+    - [自动切换](#自动切换)
+    - [手动切换](#手动切换)
+        - [1. 安装 deepin-wine](#1-安装-deepin-wine)
+        - [2. 修改 `deepin-wine-wechat` 的启动文件](#2-修改-deepin-wine-wechat-的启动文件)
+        - [3. 对于非 GNOME 桌面(KDE, XFCE等)](#3-对于非-gnome-桌面kde-xfce等)
+        - [4. 删除原先的微信目录](#4-删除原先的微信目录)
+        - [5. 修复 `deepin-wine` 字体渲染发虚](#5-修复-deepin-wine-字体渲染发虚)
 - [常见问题](#常见问题)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
@@ -98,54 +101,93 @@ sudo pacman -U #下载的包名
 
 * 安装完可直接启动
 
+## 兼容性记录
+
+| 微信版本 | wine版本 | 兼容性 |        备注        | deepin-wine版本 | 兼容性 | 备注 |
+| :------: | :------: | :----: | :----------------: | :-------------: | :----: | :--: |
+| 2.7.1.82 |  4.18-1  |  部分  | 不能使用中文输入法 |                 |        |      |
+| 2.7.1.82 |  4.17-1  |  部分  | 不能使用中文输入法 |    2.18_18-2    | 不支持 | 闪退 |
+| 2.6.8.65 |  4.16-1  |  支持  |                    |    2.18_18-2    |  支持  |      |
+
 ## 切换到 `deepin-wine`
 
 由于原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，存在托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))，边框穿透显示([deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15)), 无法截图等问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
 
+**注意：切换前先确保 `deepin-wine` 支持**
+
 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
-### 1. 安装 deepin-wine
+### 自动切换
+
+```bash
+/opt/deepinwine/apps/Deepin-WeChat/run.sh -d
+```
+
+这会安装需要的依赖并移除已安装的微信目录
+
+切换回 `wine`：
+
+```bash
+rm ~/.deepinwine/Deepin-WeChat/deepin
+```
+
+如果要卸载自动安装的依赖：
+
+```bash
+sudo pacman -Rns deepin-wine gnome-settings-daemon lib32-freetype2-infinality-ultimate
+```
+
+### 手动切换
+
+#### 1. 安装 deepin-wine
 
 ```bash
 yay -S deepin-wine
 ```
 
-
-### 2. 修改 `deepin-wine-wechat` 的启动文件
+#### 2. 修改 `deepin-wine-wechat` 的启动文件
 
 修改如下两个文件中的 `WINE_CMD` 的值：
 
 `/opt/deepinwine/apps/Deepin-WeChat/run.sh`
 
-` /opt/deepinwine/tools/run.sh`
+`/opt/deepinwine/tools/run.sh`
 
 ```diff
 -WINE_CMD="wine"
 +WINE_CMD="deepin-wine"
 ```
 
-### 3. 如果是 GNOME 桌面
+#### 3. 对于非 GNOME 桌面(KDE, XFCE等)
 
 需要安装 `gnome-settings-daemon`
 
 ```bash
 sudo pacman -Sy gnome-settings-daemon
 ```
-并在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 文件开头插入一行
+并在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 中加入如下几行：
 
-```
-/usr/lib/gsd-xsettings &
+```diff
+ RunApp()
+ {
++    if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]
++    then
++        /usr/lib/gsd-xsettings &
++    fi
+        if [ -d "$WINEPREFIX" ]; then
+                UpdateApp
+        else
 ```
 
 **注意：对 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 的修改会在 `deepin-wine-wechat` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
 
-### 4. 删除原先的微信目录
+#### 4. 删除原先的微信目录
 
-```
+```bash
 rm -rf ~/.deepinwine/Deepin-WeChat
 ```
 
-### 5. 修复 `deepin-wine` 字体渲染发虚
+#### 5. 修复 `deepin-wine` 字体渲染发虚
 
 ```bash
 yay -S lib32-freetype2-infinality-ultimate

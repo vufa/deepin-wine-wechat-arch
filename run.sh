@@ -4,6 +4,7 @@
 #
 #   Author:     Li LongYu <lilongyu@linuxdeepin.com>
 #               Peng Hao <penghao@linuxdeepin.com>
+#               Codist <countstarlight@gmail.com>
 
 WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
@@ -18,6 +19,7 @@ HelpApp()
 	echo " Extra Commands:"
 	echo " -r/--reset     Reset app to fix errors"
 	echo " -e/--remove    Remove deployed app files"
+	echo " -d/--deepin    Switch to 'deepin-wine'"
 	echo " -h/--help      Show program help info"
 }
 CallApp()
@@ -91,6 +93,34 @@ CreateBottle()
     fi
 }
 
+SwitchToDeepinWine()
+{
+	if [ -d "$WINEPREFIX" ]; then
+		RemoveApp
+		DeployApp
+	fi
+	PACKAGE_MANAGER="yay"
+	if ! [ -x "$(command -v yay)" ]; then
+		if ! [ -x "$(command -v yaourt)" ]; then
+			echo "Error: Need to install 'yay' or 'yaourt' first." >&2
+			exit 1
+		else
+			$PACKAGE_MANAGER="yaourt"
+		fi
+    fi
+	$PACKAGE_MANAGER -S deepin-wine gnome-settings-daemon lib32-freetype2-infinality-ultimate --needed
+	touch -f $WINEPREFIX/deepin
+	echo "Done."
+}
+
+# Init
+if [ -f "$WINEPREFIX/deepin" ]; then
+	WINE_CMD="deepin-wine"
+	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]; then
+		/usr/lib/gsd-xsettings &
+	fi
+fi
+
 if [ -z $1 ]; then
 	RunApp
 	exit 0
@@ -104,6 +134,9 @@ case $1 in
 		;;
 	"-e" | "--remove")
 		RemoveApp
+		;;
+	"-d" | "--deepin")
+		SwitchToDeepinWine
 		;;
 	"-u" | "--uri")
 		RunApp $2

@@ -19,7 +19,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "reg.patch")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
   'b41f7944b030d617d0b2e7128a149796'
-  '88abd550ffce483a3f9627d84e4d5e3a'
+  'fde92b4241744fdef161aef98cf8f28a'
   '35626e820e6790c230718b4dad6482f6')
 
 build() {

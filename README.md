@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.8.0.112-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.8.0.116-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -212,6 +212,7 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ## 更新日志
 
+* 2020-01-20 WeChat-2.8.0.116
 * 2020-01-10 WeChat-2.8.0.112
 * 2020-01-04 WeChat-2.8.0.106
 * 2019-11-07 WeChat-2.7.1.88

@@ -4,7 +4,7 @@ pkgname=deepin-wine-wechat
 pkgver=2.8.0.116
 wechat_installer=WeChatSetup
 deepinwechatver=2.6.2.31deepin0
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -27,6 +27,7 @@ build() {
   mkdir -p "${srcdir}/dpkgdir"
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.wechat.desktop"
+  sed "13s/WeChat.exe/wechat.exe/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.wechat.desktop"
   msg "Extracting Deepin Wine WeChat archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-WeChat/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Removing original outdated WeChat directory ..."

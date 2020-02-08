@@ -1,4 +1,4 @@
-# Maintainer: CountStarlight <countstarlight@gmail.com>
+# Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
 pkgver=2.8.0.116
@@ -14,12 +14,12 @@ conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
-  "https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
+  "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
   "reg.patch")
 md5sums=('c66a173fe6817afd898e0061d9eaf42e'
   '7de52e7d92f31f31fa0790bf2e14c7d6'
-  'fde92b4241744fdef161aef98cf8f28a'
+  '17451542cf9ca1465a85361dda409d17'
   '35626e820e6790c230718b4dad6482f6')
 
 build() {
@@ -48,7 +48,7 @@ package() {
   install -d "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
-  install -m644 "${srcdir}/${wechat_installer}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
+  install -m644 "${srcdir}/${wechat_installer}-${pkgver}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   msg "Printing help info ..."
   echo -e "\033[0;34m============================提示/INFO==============================="
   echo -e "\033[0;34m* 报告问题(Report issue):"

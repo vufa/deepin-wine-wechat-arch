@@ -10,6 +10,7 @@ WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
 APPVER="2.6.2.31deepin0"
 WECHAT_INSTALLER="WeChatSetup"
+WECHAT_VER="2.8.0.116"
 APPTAR="files.7z"
 PACKAGENAME="com.wechat"
 WINE_CMD="wine"
@@ -27,7 +28,7 @@ CallApp()
 	if [ ! -f "$WINEPREFIX/reinstalled" ]
 	then
 		touch $WINEPREFIX/reinstalled
-		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER.exe
+		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe
 	else
         #Support use native file dialog
         export ATTACH_FILE_DIALOG=1

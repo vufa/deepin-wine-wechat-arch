@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.8.0.116-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.8.0.121-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -100,6 +100,8 @@ sudo pacman -U #下载的包名
   改为修改后的安装路径，否则只有安装后第一次能够运行
 
 * 安装完可直接启动
+
+  **注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
 
 ## 兼容性记录
 
@@ -212,6 +214,7 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ## 更新日志
 
+* 2020-02-10 WeChat-2.8.0.121
 * 2020-01-20 WeChat-2.8.0.116
 * 2020-01-10 WeChat-2.8.0.112
 * 2020-01-04 WeChat-2.8.0.106

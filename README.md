@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.8.0.121-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.8.0.133-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -107,8 +107,10 @@ sudo pacman -U #下载的包名
 
 | 微信版本  | wine版本 | 兼容性 |                             备注                             | deepin-wine版本 | 兼容性 | 备注 |
 | :-------: | :------: | :----: | :----------------------------------------------------------: | :-------------: | :----: | :--: |
+| 2.8.0.133 |   5.3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
 | 2.8.0.112 | 5.0-rc4  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
 | 2.8.0.106 |  4.19-1  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
+| 2.7.1.88  |  4.19-1  |  支持  |                                                              |                 |        |      |
 | 2.7.1.88  |  4.18-1  |  部分  |                      不能使用中文输入法                      |                 |        |      |
 | 2.7.1.85  |  4.18-1  |  部分  |                      不能使用中文输入法                      |    2.18_18-2    |   ?    |      |
 | 2.7.1.82  |  4.18-1  |  部分  |                      不能使用中文输入法                      |    2.18_18-2    | 不支持 | 闪退 |
@@ -214,6 +216,7 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ## 更新日志
 
+* 2020-03-08 WeChat-2.8.0.133
 * 2020-02-10 WeChat-2.8.0.121
 * 2020-01-20 WeChat-2.8.0.116
 * 2020-01-10 WeChat-2.8.0.112

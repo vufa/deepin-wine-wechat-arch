@@ -1,12 +1,12 @@
 diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
---- reg_tmp/system.reg	2018-04-03 13:53:26.000000000 +0800
-+++ reg_tmp_fixed/system.reg	2019-04-03 21:34:07.000000000 +0800
-@@ -30955,15 +30955,16 @@
+--- reg_tmp/system.reg	2019-08-27 15:06:17.000000000 +0800
++++ reg_tmp_fixed/system.reg	2020-03-10 11:14:33.397830695 +0800
+@@ -30982,15 +30982,16 @@
  [Software\\Microsoft\\Windows\\CurrentVersion\\Winlogon] 1486457887
  #time=1d281204c9b71e0
  
--[Software\\Microsoft\\Windows NT\\CurrentVersion] 1507795882
--#time=1d34331b1382cd2
+-[Software\\Microsoft\\Windows NT\\CurrentVersion] 1566803037
+-#time=1d55bdc6e529798
 -"CSDVersion"="Service Pack 3"
 -"CurrentBuildNumber"="2600"
 +[Software\\Microsoft\\Windows NT\\CurrentVersion] 1571657811
@@ -24,35 +24,3 @@ diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
  "RegisteredOrganization"=""
  "RegisteredOwner"=""
  "SystemRoot"="C:\\windows"
-diff -ruN reg_tmp/update.policy reg_tmp_fixed/update.policy
---- reg_tmp/update.policy	2018-04-03 13:53:26.000000000 +0800
-+++ reg_tmp_fixed/update.policy	2018-02-23 20:31:32.000000000 +0800
-@@ -8,15 +8,14 @@
- ;; Ingore     - Ingore file when copy.
- 
- ;; Ingore update.policy itself.
--;; "^update.policy$" = "Ingore"
-+"^update.policy$" = "Ingore"
- "^.update-timestamp$" = "Ingore"
- 
- ;; System registry files.
- "^(system|userdef|user).reg$" = "Registry"
- 
- ;; Addtional assist files.
--"^drive_c/deepin" = "Keep"
--"^drive_c/deepin/EnvInit.sh" = "Keep"
-+"^drive_c/Deepin" = "Keep"
- 
- ;; Microsoft Office files.
- "^drive_c/Windows/(?:control\.ini|hh\.dat|mapiuid\.ini|Reg Save Log\.txt)$" = "Override"
-diff -ruN reg_tmp/user.reg reg_tmp_fixed/user.reg
---- reg_tmp/user.reg	2018-04-03 13:53:26.000000000 +0800
-+++ reg_tmp_fixed/user.reg	2019-04-03 21:35:35.000000000 +0800
-@@ -815,6 +815,7 @@
- "androidassist"=""
- "mlang"="native,builtin"
- "msls31"="native,builtin"
-+"ntoskrnl.exe"=""
- "riched20"="native,builtin"
- "txplatform.exe"=""
- "txupd.exe"=""

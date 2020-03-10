@@ -59,6 +59,8 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
+**注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
+
 ### 从AUR安装
 
 已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可使用 `yay` 或 `yaourt` 安装:

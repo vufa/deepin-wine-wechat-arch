@@ -4,7 +4,7 @@ pkgname=deepin-wine-wechat
 pkgver=2.8.0.133
 wechat_installer=WeChatSetup
 deepinwechatver=2.6.8.65deepin0
-pkgrel=2
+pkgrel=3
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -16,11 +16,13 @@ _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
-  "reg.patch")
+  "reg.patch"
+  "shadow.exe")
 md5sums=('fe31cf4f0f6186fc1c99adc1512f5305'
   '562d71c57e136a8aaa3be0d135092161'
-  'bb6327d7e6997a3d9e1852915bafd337'
-  'f264f961704f2aa1d480971b0e58617a')
+  '3c6b1957562a99ff3c845a29b8569244'
+  'f264f961704f2aa1d480971b0e58617a'
+  '0138f993c99d899e609bad85c2c9a15c')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -34,6 +36,8 @@ build() {
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
   msg "Patching reg files ..."
   patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
+  msg "Adding shadow.exe..."
+  cp "${srcdir}/shadow.exe" "${srcdir}/deepinwechatdir/drive_c/"
   msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Repackaging app archive ..."

@@ -36,7 +36,11 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
         - [3. 对于非 GNOME 桌面(KDE, XFCE等)](#3-对于非-gnome-桌面kde-xfce等)
         - [4. 删除原先的微信目录](#4-删除原先的微信目录)
         - [5. 修复 `deepin-wine` 字体渲染发虚](#5-修复-deepin-wine-字体渲染发虚)
-- [常见问题](#常见问题)
+- [常见问题及解决](#常见问题及解决)
+    - [不能截图](#不能截图)
+    - [高分辨率屏幕支持](#高分辨率屏幕支持)
+    - [使用全局截图快捷键](#使用全局截图快捷键)
+    - [消除阴影边框](#消除阴影边框)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
@@ -205,12 +209,83 @@ yay -S lib32-freetype2-infinality-ultimate
 
 **注意：切换到 `deepin-wine` 后，对 `wine` 的修改，如更改dpi，都改为对 `deepin-wine` 的修改**
 
-## 常见问题
+## 常见问题及解决
 
-- [ ] 1.不能视频通话
-- [x] 2.不能截图(切换到 `deepin-wine` 后解决)
-- [x] 3.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
-- [x] 4.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
+### 不能截图
+
+参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
+
+### 高分辨率屏幕支持
+
+在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
+
+### 使用全局截图快捷键
+
+使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
+
+### 消除阴影边框
+
+微信窗口不在最上方时，在其他窗口上会显示一个阴影边框，根据[用山寨方法解决wine运行微信残留阴影窗口的问题](https://blog.kangkang.org/index.php/archives/397)，对原程序稍做修改编译出[shadow.exe](shadow.exe)，在微信启动时运行，自动消除这个阴影边框。
+
+你也可以自行编译这个程序：
+
+```bash
+# 安装windows交叉编译工具链
+yay -S mingw-w64-gcc
+
+# 编译
+i686-w64-mingw32-g++ -municode -m32 -s shadow.cpp -o shadow
+```
+
+对于 `v2.8.0.133-2` 及之前的版本，不自带这个程序，可以自行将[shadow.exe](shadow.exe)放置到 `~/.deepinwine/Deepin-WeChat/drive_c/shadow.exe`
+
+并参照[run.sh](run.sh)在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 中加入如下几行：
+
+```diff
+ 	if [ ! -f "$WINEPREFIX/reinstalled" ]
+ 	then
+ 		touch $WINEPREFIX/reinstalled
+-		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe
++		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe &
+ 	else
+         #Support use native file dialog
+         export ATTACH_FILE_DIALOG=1
+ 
+         env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+ 	fi
++	RemoveShadow
+ }
+ 
++CheckProcess()
++{
++    if [ "$1" = "" ]; then
++        return 1
++    fi
++
++    PROCESS_NUM=`ps -ef | grep "$1" | grep -v "grep" | wc -l`
++    if [ $PROCESS_NUM -eq 0 ]; then
++        return 1
++    else
++        return 0
++    fi
++}
++
++# remove 'popupshadow'
++RemoveShadow()
++{
++	CheckProcess "shadow.exe"
++    Check_RET=$?
++	# run 'shadow.exe' if process not exist
++    if [ $Check_RET -eq 1 ]; then
++        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
++    fi
++}
++
+ SwitchToDeepinWine()
+ {
+ 	if [ -d "$WINEPREFIX" ]; then
+
+```
 
 ## 感谢
 

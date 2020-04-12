@@ -28,13 +28,14 @@ CallApp()
 	if [ ! -f "$WINEPREFIX/reinstalled" ]
 	then
 		touch $WINEPREFIX/reinstalled
-		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe
+		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe &
 	else
         #Support use native file dialog
         export ATTACH_FILE_DIALOG=1
 
         env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
 	fi
+	RemoveShadow
 }
 ExtractApp()
 {
@@ -91,6 +92,31 @@ CreateBottle()
         UpdateApp
     else
         DeployApp
+    fi
+}
+
+CheckProcess()
+{
+    if [ "$1" = "" ]; then
+        return 1
+    fi
+
+    PROCESS_NUM=`ps -ef | grep "$1" | grep -v "grep" | wc -l`
+    if [ $PROCESS_NUM -eq 0 ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+# remove 'popupshadow'
+RemoveShadow()
+{
+	CheckProcess "shadow.exe"
+    Check_RET=$?
+	# run 'shadow.exe' if process not exist
+    if [ $Check_RET -eq 1 ]; then
+        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
     fi
 }
 

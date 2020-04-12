@@ -35,7 +35,10 @@ CallApp()
 
         env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
 	fi
-	RemoveShadow
+	# run 'shadow.exe' if process not exist
+	if [[ -z "$(ps -e | grep -o 'shadow.exe')" ]]; then
+		env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
+	fi
 }
 ExtractApp()
 {
@@ -95,31 +98,6 @@ CreateBottle()
     fi
 }
 
-CheckProcess()
-{
-    if [ "$1" = "" ]; then
-        return 1
-    fi
-
-    PROCESS_NUM=`ps -ef | grep "$1" | grep -v "grep" | wc -l`
-    if [ $PROCESS_NUM -eq 0 ]; then
-        return 1
-    else
-        return 0
-    fi
-}
-
-# remove 'popupshadow'
-RemoveShadow()
-{
-	CheckProcess "shadow.exe"
-    Check_RET=$?
-	# run 'shadow.exe' if process not exist
-    if [ $Check_RET -eq 1 ]; then
-        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
-    fi
-}
-
 SwitchToDeepinWine()
 {
 	if [ -d "$WINEPREFIX" ]; then
@@ -135,7 +113,7 @@ SwitchToDeepinWine()
 			$PACKAGE_MANAGER="yaourt"
 		fi
     fi
-	$PACKAGE_MANAGER -S deepin-wine gnome-settings-daemon lib32-freetype2-infinality-ultimate --needed
+	$PACKAGE_MANAGER -S deepin-wine xsettingsd lib32-freetype2-infinality-ultimate --needed
 	touch -f $WINEPREFIX/deepin
 	echo "Done."
 }
@@ -143,8 +121,8 @@ SwitchToDeepinWine()
 # Init
 if [ -f "$WINEPREFIX/deepin" ]; then
 	WINE_CMD="deepin-wine"
-	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]; then
-		/usr/lib/gsd-xsettings &
+	if [[ -z "$(ps -e | grep -o xsettingsd)" ]]; then
+		/usr/bin/xsettingsd &
 	fi
 fi
 

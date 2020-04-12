@@ -31,10 +31,10 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换](#自动切换)
     - [手动切换](#手动切换)
-        - [1. 安装 deepin-wine](#1-安装-deepin-wine)
-        - [2. 修改 `deepin-wine-wechat` 的启动文件](#2-修改-deepin-wine-wechat-的启动文件)
-        - [3. 对于非 GNOME 桌面(KDE, XFCE等)](#3-对于非-gnome-桌面kde-xfce等)
-        - [4. 删除原先的微信目录](#4-删除原先的微信目录)
+        - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
+        - [2. 安装 `xsettingsd`](#2-安装-xsettingsd)
+        - [3. 修改 `deepin-wine-wechat` 的启动文件](#3-修改-deepin-wine-wechat-的启动文件)
+        - [4. 删除已安装的微信目录](#4-删除已安装的微信目录)
         - [5. 修复 `deepin-wine` 字体渲染发虚](#5-修复-deepin-wine-字体渲染发虚)
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
@@ -148,45 +148,38 @@ rm ~/.deepinwine/Deepin-WeChat/deepin
 如果要卸载自动安装的依赖：
 
 ```bash
-sudo pacman -Rns deepin-wine gnome-settings-daemon lib32-freetype2-infinality-ultimate
+sudo pacman -Rns deepin-wine xsettingsd lib32-freetype2-infinality-ultimate
 ```
 
 ### 手动切换
 
-#### 1. 安装 deepin-wine
+#### 1. 安装 `deepin-wine`
 
 ```bash
 yay -S deepin-wine
 ```
 
-#### 2. 修改 `deepin-wine-wechat` 的启动文件
+#### 2. 安装 `xsettingsd`
 
-修改如下两个文件中的 `WINE_CMD` 的值：
+根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法：
 
-`/opt/deepinwine/apps/Deepin-WeChat/run.sh`
+```bash
+sudo pacman -S xsettingsd
+```
 
-`/opt/deepinwine/tools/run.sh`
+#### 3. 修改 `deepin-wine-wechat` 的启动文件
+
+修改 `/opt/deepinwine/apps/Deepin-WeChat/run.sh`：
 
 ```diff
 -WINE_CMD="wine"
 +WINE_CMD="deepin-wine"
-```
 
-#### 3. 对于非 GNOME 桌面(KDE, XFCE等)
-
-需要安装 `gnome-settings-daemon`
-
-```bash
-sudo pacman -Sy gnome-settings-daemon
-```
-并在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 中加入如下几行：
-
-```diff
  RunApp()
  {
-+    if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]
++    if [[ -z "$(ps -e | grep -o xsettingsd)" ]]
 +    then
-+        /usr/lib/gsd-xsettings &
++        /usr/bin/xsettingsd &
 +    fi
         if [ -d "$WINEPREFIX" ]; then
                 UpdateApp
@@ -195,7 +188,7 @@ sudo pacman -Sy gnome-settings-daemon
 
 **注意：对 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 的修改会在 `deepin-wine-wechat` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
 
-#### 4. 删除原先的微信目录
+#### 4. 删除已安装的微信目录
 
 ```bash
 rm -rf ~/.deepinwine/Deepin-WeChat
@@ -242,49 +235,24 @@ i686-w64-mingw32-g++ -municode -m32 -s shadow.cpp -o shadow
 并参照[run.sh](run.sh)在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 中加入如下几行：
 
 ```diff
- 	if [ ! -f "$WINEPREFIX/reinstalled" ]
- 	then
- 		touch $WINEPREFIX/reinstalled
+CallApp()
+{
+	if [ ! -f "$WINEPREFIX/reinstalled" ]
+	then
+		touch $WINEPREFIX/reinstalled
 -		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe
 +		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe &
- 	else
-         #Support use native file dialog
-         export ATTACH_FILE_DIALOG=1
- 
-         env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
- 	fi
-+	RemoveShadow
- }
- 
-+CheckProcess()
-+{
-+    if [ "$1" = "" ]; then
-+        return 1
-+    fi
-+
-+    PROCESS_NUM=`ps -ef | grep "$1" | grep -v "grep" | wc -l`
-+    if [ $PROCESS_NUM -eq 0 ]; then
-+        return 1
-+    else
-+        return 0
-+    fi
-+}
-+
-+# remove 'popupshadow'
-+RemoveShadow()
-+{
-+	CheckProcess "shadow.exe"
-+    Check_RET=$?
-+	# run 'shadow.exe' if process not exist
-+    if [ $Check_RET -eq 1 ]; then
-+        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
-+    fi
-+}
-+
- SwitchToDeepinWine()
- {
- 	if [ -d "$WINEPREFIX" ]; then
+	else
+        #Support use native file dialog
+        export ATTACH_FILE_DIALOG=1
 
+        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+	fi
++	# run 'shadow.exe' if process not exist
++	if [[ -z "$(ps -e | grep -o 'shadow.exe')" ]]; then
++		env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
++	fi
+}
 ```
 
 ## 感谢

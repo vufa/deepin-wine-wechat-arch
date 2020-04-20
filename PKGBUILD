@@ -1,15 +1,15 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=2.8.0.133
+pkgver=2.9.0.112
 wechat_installer=WeChatSetup
 deepinwechatver=2.6.8.65deepin0
-pkgrel=4
+pkgrel=1
 pkgdesc="Tencent WeChat (com.wechat) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
-depends=('p7zip' 'wine' 'wine-mono' 'wine_gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
@@ -19,8 +19,8 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "reg.patch"
   "shadow.exe")
 md5sums=('fe31cf4f0f6186fc1c99adc1512f5305'
-  '562d71c57e136a8aaa3be0d135092161'
-  'd25d415fbcf6c7608d0aa12188d755ea'
+  '1c2052b1e4e4d27b746b3723683619ac'
+  'c1af7dde992a30815c185152527fbd0d'
   'f264f961704f2aa1d480971b0e58617a'
   '0138f993c99d899e609bad85c2c9a15c')
 
@@ -53,13 +53,4 @@ package() {
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m644 "${srcdir}/${wechat_installer}-${pkgver}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
-  msg "Printing help info ..."
-  echo -e "\033[0;34m============================提示/INFO==============================="
-  echo -e "\033[0;34m* 报告问题(Report issue):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/issues"
-  echo -e "\033[0;34m* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch"
-  echo -e "\033[0;34m* 安装包下载(Installation package download):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/releases"
-  echo -e "\033[0;34m===================================================================="
 }

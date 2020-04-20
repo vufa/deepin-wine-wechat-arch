@@ -1,5 +1,19 @@
+info() {
+    echo -e "\033[0;34m============================提示/INFO==============================="
+    echo -e "\033[0;34m* 反馈问题(Report issue):"
+    echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/issues"
+    echo -e "\033[0;34m* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
+    echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch"
+    echo -e "\033[0;34m* 安装包下载(Installation package download):"
+    echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-wechat-arch/releases"
+    echo -e "\033[0;34m===================================================================="
+}
+post_install() {
+    info
+}
 post_upgrade() {
     find /home -maxdepth 2 -name ".deepinwine" -exec rm -f \{\}/Deepin-WeChat/reinstalled \;
+    info
 }
 pre_remove() {
     echo "deleting the WeChat bottle..."

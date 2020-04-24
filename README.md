@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.9.0.112-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.9.0.114-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -112,6 +112,7 @@ sudo pacman -U #下载的包名
 
 | 微信版本  | wine版本 | 兼容性 |                             备注                             | deepin-wine版本 | 兼容性 | 备注 |
 | :-------: | :------: | :----: | :----------------------------------------------------------: | :-------------: | :----: | :--: |
+| 2.9.0.114 |   5.6    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
 | 2.9.0.112 |   5.5    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
 | 2.8.0.133 |   5.3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
 | 2.8.0.112 | 5.0-rc4  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
@@ -265,6 +266,7 @@ CallApp()
 
 ## 更新日志
 
+* 2020-04-24 WeChat-2.9.0.114
 * 2020-04-20 WeChat-2.9.0.112
 * 2020-03-08 WeChat-2.8.0.133
 * 2020-02-10 WeChat-2.8.0.121

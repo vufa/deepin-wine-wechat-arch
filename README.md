@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.9.0.114-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.9.0.123-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -110,19 +110,20 @@ sudo pacman -U #下载的包名
 
 ## 兼容性记录
 
-| 微信版本  | wine版本 | 兼容性 |                             备注                             | deepin-wine版本 | 兼容性 | 备注 |
-| :-------: | :------: | :----: | :----------------------------------------------------------: | :-------------: | :----: | :--: |
-| 2.9.0.114 |   5.6    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
-| 2.9.0.112 |   5.5    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
-| 2.8.0.133 |   5.3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
-| 2.8.0.112 | 5.0-rc4  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
-| 2.8.0.106 |   4.19   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |      |
-| 2.7.1.88  |  4.19+   |  支持  |                                                              |                 |        |      |
-| 2.7.1.88  |   4.18   |  部分  |                      不能使用中文输入法                      |                 |        |      |
-| 2.7.1.85  |   4.18   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    |   ?    |      |
-| 2.7.1.82  |   4.18   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    | 不支持 | 闪退 |
-| 2.7.1.82  |   4.17   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    | 不支持 | 闪退 |
-| 2.6.8.65  |   4.16   |  支持  |                                                              |    2.18_18-2    |  支持  |      |
+| 微信版本  | wine版本 | 兼容性 |                             备注                             | deepin-wine版本 | 兼容性 |                             备注                             |
+| :-------: | :------: | :----: | :----------------------------------------------------------: | :-------------: | :----: | :----------------------------------------------------------: |
+| 2.9.0.123 |   5.7    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |    2.18_22-3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
+| 2.9.0.114 |   5.6    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
+| 2.9.0.112 |   5.5    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
+| 2.8.0.133 |   5.3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
+| 2.8.0.112 | 5.0-rc4  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
+| 2.8.0.106 |   4.19   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
+| 2.7.1.88  |  4.19+   |  支持  |                                                              |                 |        |                                                              |
+| 2.7.1.88  |   4.18   |  部分  |                      不能使用中文输入法                      |                 |        |                                                              |
+| 2.7.1.85  |   4.18   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    |   ?    |                                                              |
+| 2.7.1.82  |   4.18   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    | 不支持 |                             闪退                             |
+| 2.7.1.82  |   4.17   |  部分  |                      不能使用中文输入法                      |    2.18_18-2    | 不支持 |                             闪退                             |
+| 2.6.8.65  |   4.16   |  支持  |                                                              |    2.18_18-2    |  支持  |                                                              |
 
 ## 切换到 `deepin-wine`
 
@@ -138,7 +139,7 @@ sudo pacman -U #下载的包名
 /opt/deepinwine/apps/Deepin-WeChat/run.sh -d
 ```
 
-这会安装需要的依赖并移除已安装的微信目录
+这会安装需要的依赖，移除已安装的微信目录并回退对注册表文件的修改
 
 切换回 `wine`：
 
@@ -266,6 +267,7 @@ CallApp()
 
 ## 更新日志
 
+* 2020-05-10 WeChat-2.9.0.123
 * 2020-04-24 WeChat-2.9.0.114
 * 2020-04-20 WeChat-2.9.0.112
 * 2020-03-08 WeChat-2.8.0.133

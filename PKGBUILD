@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=2.9.0.114
+pkgver=2.9.0.123
 wechat_installer=WeChatSetup
 deepinwechatver=2.6.8.65deepin0
 pkgrel=1
@@ -19,8 +19,8 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "reg.patch"
   "shadow.exe")
 md5sums=('fe31cf4f0f6186fc1c99adc1512f5305'
-  '4e8a6b02e3090d7277669f849b80007a'
-  '5a5e340c27759cf4ce4b078206b6c424'
+  '0f64e8d65338e8c136a825ed5b717d66'
+  'ee59ffc498b45598abe0e3aea03ca425'
   'f264f961704f2aa1d480971b0e58617a'
   'd83f1c3845f28abd81cbfd215089d3d8')
 
@@ -51,6 +51,7 @@ package() {
   msg "Copying WeChat to /opt/deepinwine/apps/Deepin-WeChat ..."
   install -d "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
+  install -m644 "${srcdir}/reg.patch" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
   install -m644 "${srcdir}/${wechat_installer}-${pkgver}.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-WeChat/"
 }

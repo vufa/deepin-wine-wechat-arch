@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.9.0.123-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-2.9.5.41-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -29,7 +29,7 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
     - [本地打包安装](#本地打包安装)
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
-    - [自动切换](#自动切换)
+    - [自动切换(推荐)](#自动切换推荐)
     - [手动切换](#手动切换)
         - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
         - [2. 对于非 GNOME 桌面(KDE, XFCE等)](#2-对于非-gnome-桌面kde-xfce等)
@@ -112,6 +112,7 @@ sudo pacman -U #下载的包名
 
 | 微信版本  | wine版本 | 兼容性 |                             备注                             | deepin-wine版本 | 兼容性 |                             备注                             |
 | :-------: | :------: | :----: | :----------------------------------------------------------: | :-------------: | :----: | :----------------------------------------------------------: |
+| 2.9.5.41  |   5.11   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |    2.18_22-3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
 | 2.9.0.123 |   5.7    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |    2.18_22-3    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
 | 2.9.0.114 |   5.6    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
 | 2.9.0.112 |   5.5    |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |                 |        |                                                              |
@@ -133,7 +134,7 @@ sudo pacman -U #下载的包名
 
 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
-### 自动切换
+### 自动切换(推荐)
 
 ```bash
 /opt/deepinwine/apps/Deepin-WeChat/run.sh -d
@@ -216,7 +217,19 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ### 高分辨率屏幕支持
 
-在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
+在 `winecfg` 的Graphics选项卡中修改dpi，如 修改为`192`
+
+对于 `wine`：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" winecfg
+```
+
+对于 `deepin-wine` ：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine winecfg
+```
 
 ### 使用全局截图快捷键
 
@@ -224,7 +237,11 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ### 消除阴影边框
 
-微信窗口不在最上方时，在其他窗口上会显示一个阴影边框，根据[用山寨方法解决wine运行微信残留阴影窗口的问题](https://blog.kangkang.org/index.php/archives/397)，对原程序稍做修改编译出[shadow.exe](shadow.exe)，在微信启动时运行，自动消除这个阴影边框。
+微信窗口不在最上方时，在其他窗口上会显示一个阴影边框
+
+参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决，或者使用[shadow.exe](shadow.exe)，在微信启动时运行，自动消除这个阴影边框
+
+> 根据[“用山寨方法解决wine运行微信残留阴影窗口的问题”](https://blog.kangkang.org/index.php/archives/397)，对原程序稍做修改编译出的 [shadow.exe](shadow.exe)，源码文件为 [shadow.cpp](shadow.cpp)
 
 你也可以自行编译这个程序：
 
@@ -267,6 +284,7 @@ CallApp()
 
 ## 更新日志
 
+* 2020-07-02 WeChat-2.9.5.41
 * 2020-05-10 WeChat-2.9.0.123
 * 2020-04-24 WeChat-2.9.0.114
 * 2020-04-20 WeChat-2.9.0.112

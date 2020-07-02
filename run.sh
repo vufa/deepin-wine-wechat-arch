@@ -4,13 +4,14 @@
 #
 #   Author:     Li LongYu <lilongyu@linuxdeepin.com>
 #               Peng Hao <penghao@linuxdeepin.com>
+
 #               Codist <countstarlight@gmail.com>
 
 WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
 APPVER="2.6.8.65deepin0"
 WECHAT_INSTALLER="WeChatSetup"
-WECHAT_VER="2.9.0.123"
+WECHAT_VER="2.9.5.41"
 APPTAR="files.7z"
 PACKAGENAME="com.wechat"
 WINE_CMD="wine"

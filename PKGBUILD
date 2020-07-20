@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=2.9.5.41
+pkgver=2.9.5.56
 wechat_installer=WeChatSetup
 deepinwechatver=2.6.8.65deepin0
 pkgrel=1
@@ -19,8 +19,8 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "reg.patch"
   "shadow.exe")
 md5sums=('fe31cf4f0f6186fc1c99adc1512f5305'
-  '66e44f6d70e52890c7feab066868c062'
-  '42b388b01db50af8b781b58bc6ac5414'
+  'f5a0bdfe4e3c52e96c09c67d59234a68'
+  '993f55a94e99879694b978ac8726b0d7'
   'f264f961704f2aa1d480971b0e58617a'
   'd83f1c3845f28abd81cbfd215089d3d8')
 

@@ -23,6 +23,7 @@ archlinux:
   - lib32-libldap
   script:
   - "makepkg"
+  - "./gen.sh -m"
 
 script:
 - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
@@ -34,7 +35,7 @@ deploy:
   api_key: $GH_TOKEN
   file_glob: true
   file:
-    - "deepin-wine-wechat-*-x86_64.pkg.tar.xz"
+    - "deepin-wine-wechat*.pkg*"
   on:
     tags: true
     all_branches: true

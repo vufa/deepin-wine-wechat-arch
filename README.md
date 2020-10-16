@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-2.9.5.56-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.0.0.57-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -64,6 +64,8 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 
 **注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
 
+以下三种安装方式效果相同，选择一种即可
+
 ### 从AUR安装
 
 已添加到AUR [deepin-wine-wechat](https://aur.archlinux.org/packages/deepin-wine-wechat/)，可使用 `yay` 或 `yaourt` 安装:
@@ -76,10 +78,16 @@ yay -S deepin-wine-wechat
 
 > 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
 
-在[GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases)页面下载 `.pkg.tar.xz`后缀的安装包，使用`pacman`安装：
+在 [GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
 ```bash
 sudo pacman -U #下载的包名
+```
+
+`.md5` 文件用于校验包完整性：
+
+```bash
+md5sum -c *.md5
 ```
 
 ### 本地打包安装
@@ -112,6 +120,7 @@ sudo pacman -U #下载的包名
 
 |   微信    |  wine   | 兼容性 |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-------: | :-----: | :----: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+| 3.0.0.57  |  5.19   |  支持  |                                                              |  2.18_24-3  |  支持  |                                                              |
 | 2.9.5.56  |  5.13   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_24-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
 | 2.9.5.41  |  5.11   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
 | 2.9.0.123 |   5.7   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
@@ -285,6 +294,7 @@ CallApp()
 
 ## 更新日志
 
+* 2020-10-16 WeChat-3.0.0.57
 * 2020-07-20 WeChat-2.9.5.56
 * 2020-07-02 WeChat-2.9.5.41
 * 2020-05-10 WeChat-2.9.0.123

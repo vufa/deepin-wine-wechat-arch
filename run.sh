@@ -11,7 +11,7 @@ WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat"
 APPDIR="/opt/deepinwine/apps/Deepin-WeChat"
 APPVER="2.6.8.65deepin0"
 WECHAT_INSTALLER="WeChatSetup"
-WECHAT_VER="2.9.5.56"
+WECHAT_VER="3.0.0.57"
 APPTAR="files.7z"
 PACKAGENAME="com.wechat"
 WINE_CMD="wine"
@@ -146,6 +146,9 @@ SwitchToDeepinWine()
 if [ -f "$WINEPREFIX/deepin" ]; then
 	WINE_CMD="deepin-wine"
 	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]] && [[ -z "$(ps -e | grep -o xsettingsd)" ]]; then
+		if [[ ! -f "$HOME/.xsettingsd" ]] && [[ ! -f "$HOME/.config/xsettingsd/xsettingsd.conf" ]] && [[ ! -f "/etc/xsettingsd/xsettingsd.conf" ]]; then
+			touch "$HOME/.config/xsettingsd/xsettingsd.conf"
+		fi
 		/usr/bin/xsettingsd &
 	fi
 fi

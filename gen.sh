@@ -1,5 +1,8 @@
 #!/bin/sh
 
+PACKAGE_NAME="deepin-wine-wechat"
+PACKAGE_SUFFIX=(".pkg.tar.xz" ".pkg.tar.zst")
+
 GenPatch()
 {
     diff -ruN reg_tmp/ reg_tmp_fixed/ > reg.patch
@@ -30,6 +33,13 @@ Tar()
     cd ../
 }
 
+Md5()
+{
+    for i in "${PACKAGE_SUFFIX[@]}"; do
+        find . -type f -name "${PACKAGE_NAME}*$i" -execdir sh -c 'md5sum "$1" > "$1.md5"' _ {} \;
+    done
+}
+
 HelpApp()
 {
     echo " Extra Commands:"
@@ -37,7 +47,8 @@ HelpApp()
     echo " -e/--extract        Extract reg files from reg_files.tar.bz2 to dir reg_tmp_fixed/"
     echo " -g/--gen            Generate AUR package info to .SRCINFO"
     echo " -c/--clean          Clean files which not track by git"
-    echo " -t/--tar            Package reg files and modify the md5 value in PKGBUILD"
+    echo " -t/--tar            Package reg files"
+    echo " -m/--md5            Generate the md5 file of each package"
     echo " -h/--help           Show program help info"
 }
 
@@ -61,6 +72,9 @@ case $1 in
     ;;
     "-t" | "--tar")
         Tar
+    ;;
+    "-m" | "--md5")
+        Md5
     ;;
     "-h" | "--help")
         HelpApp

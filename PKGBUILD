@@ -12,7 +12,7 @@ license=('custom')
 depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
-_mirror="https://mirrors.ustc.edu.cn/deepin"
+_mirror="https://packages.deepin.com/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
@@ -20,7 +20,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwe
   "shadow.exe")
 md5sums=('fe31cf4f0f6186fc1c99adc1512f5305'
   '2b103d675a045a2ef68c23c6c7339471'
-  'ab8fc323e66bdbbcd734df7f9dbdce31'
+  'f6027f842f18f23137a33f0d97f38715'
   'f264f961704f2aa1d480971b0e58617a'
   'd83f1c3845f28abd81cbfd215089d3d8')
 

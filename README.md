@@ -38,7 +38,7 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
-    - [使用全局截图快捷键](#使用全局截图快捷键)
+    - [GNOME 桌面上的悬浮窗口问题](#gnome-桌面上的悬浮窗口问题)
     - [消除阴影边框](#消除阴影边框)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
@@ -100,21 +100,16 @@ md5sum -c *.md5
  makepkg -si
 ```
 
-* 运行应用菜单中创建的WeChat，开始安装
+用上述三种安装方式之一安装完成后，运行应用菜单中创建的WeChat，首次运行会用WeChat的安装包进行安装
 
-  **注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本：**
+**注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/deepinwine/apps/Deepin-WeChat/run.sh`)：**
 
-  `/opt/deepinwine/apps/Deepin-WeChat/run.sh`
+```bash
+env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+```
+改为修改后的安装路径，否则只有安装后第一次能够运行
 
-  ```bash
-  env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
-  ```
-
-  改为修改后的安装路径，否则只有安装后第一次能够运行
-
-* 安装完可直接启动
-
-  **注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
+**注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
 
 ## 兼容性记录
 
@@ -138,11 +133,11 @@ md5sum -c *.md5
 
 ## 切换到 `deepin-wine`
 
+> 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法
+
 原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，截图功能也不可用，可以选择切换到 `deepin-wine`。
 
 **注意：切换前先确保 `deepin-wine` 支持**
-
-根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
 ### 自动切换(推荐)
 
@@ -174,9 +169,9 @@ yay -S deepin-wine
 
 #### 2. 对于非 GNOME 桌面(KDE, XFCE等)
 
-需要安装 `xsettingsd`：
+> 根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法
 
-根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法：
+需要安装 `xsettingsd`：
 
 ```bash
 sudo pacman -S xsettingsd
@@ -241,9 +236,11 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" winecfg
 env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine winecfg
 ```
 
-### 使用全局截图快捷键
+### GNOME 桌面上的悬浮窗口问题
 
-使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
+> 根据 [deepin-wine-tim-arch#2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)，由[EricDracula](https://github.com/EricDracula)提供的方法
+
+安装 GNOME 插件: [TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
 
 ### 消除阴影边框
 

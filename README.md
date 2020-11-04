@@ -291,6 +291,9 @@ CallApp()
 
 ## 更新日志
 
+<details open>
+<summary>2020</summary>
+
 * 2020-10-16 WeChat-3.0.0.57
 * 2020-07-20 WeChat-2.9.5.56
 * 2020-07-02 WeChat-2.9.5.41
@@ -302,6 +305,11 @@ CallApp()
 * 2020-01-20 WeChat-2.8.0.116
 * 2020-01-10 WeChat-2.8.0.112
 * 2020-01-04 WeChat-2.8.0.106
+
+</details>
+<details>
+<summary>2019</summary>
+
 * 2019-11-07 WeChat-2.7.1.88
 * 2019-10-23 WeChat-2.7.1.85
 * 2019-10-19 WeChat-2.7.1.82
@@ -310,3 +318,5 @@ CallApp()
 * 2019-05-29 WeChat-2.6.8.51
 * 2019-04-03 WeChat-2.6.7.57
 * 2019-01-03 WeChat-2.6.2
+
+</details>

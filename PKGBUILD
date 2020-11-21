@@ -12,7 +12,7 @@ license=('custom')
 depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
-_mirror="https://ftp.sjtu.edu.cn/deepin"
+_mirror="http://packages.deepin.com/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
@@ -32,8 +32,9 @@ build() {
   sed "13s/WeChat.exe/wechat.exe/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.wechat.desktop"
   msg "Extracting Deepin Wine WeChat archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-WeChat/files.7z" -o"${srcdir}/deepinwechatdir"
-  msg "Removing original outdated WeChat directory ..."
+  msg "Cleaning up the original package directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
+  find -L "${srcdir}/deepinwechatdir/dosdevices" -maxdepth 1 -type l -delete
   msg "Patching reg files ..."
   patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
   msg "Adding shadow.exe..."

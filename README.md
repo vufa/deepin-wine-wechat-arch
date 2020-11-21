@@ -100,7 +100,7 @@ md5sum -c *.md5
  makepkg -si
 ```
 
-用上述三种安装方式之一安装完成后，运行应用菜单中创建的WeChat，首次运行会用WeChat的安装包进行安装
+用上述三种安装方式之一安装完成后，运行应用菜单中创建的 WeChat 快捷方式，首次运行会用 WeChat 的安装包进行安装
 
 **注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/deepinwine/apps/Deepin-WeChat/run.sh`)：**
 

@@ -19,7 +19,7 @@
   </a>
 </p>
 
-Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`，包含定制的注册表配置，微信安装包替换为官方最新
+Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依赖`deepin-wine`，包含定制的运行脚本，微信安装包替换为官方最新
 
 <!-- TOC -->
 
@@ -30,11 +30,7 @@ Deepin打包的微信(WeChat)容器移植到Archlinux，不依赖`deepin-wine`�
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
-    - [手动切换](#手动切换)
-        - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
-        - [2. 对于非 GNOME 桌面(KDE, XFCE等)](#2-对于非-gnome-桌面kde-xfce等)
-        - [3. 删除已安装的微信目录](#3-删除已安装的微信目录)
-        - [4. 修复 `deepin-wine` 字体渲染发虚](#4-修复-deepin-wine-字体渲染发虚)
+    - [从 `deepin-wine 2.x` 迁移到 `deepin-wine 5.x`](#从-deepin-wine-2x-迁移到-deepin-wine-5x)
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
@@ -102,10 +98,10 @@ md5sum -c *.md5
 
 用上述三种安装方式之一安装完成后，运行应用菜单中创建的 WeChat 快捷方式，首次运行会用 WeChat 的安装包进行安装
 
-**注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/deepinwine/apps/Deepin-WeChat/run.sh`)：**
+**注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/apps/com.qq.weixin.deepin/files/run.sh`)：**
 
 ```bash
-env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
+EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 ```
 改为修改后的安装路径，否则只有安装后第一次能够运行
 
@@ -115,6 +111,7 @@ env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Ten
 
 |   微信    |  wine   | 兼容性 |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-------: | :-----: | :----: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+| 3.0.0.57  |  5.22   |  支持  |                                                              |  5.0.16-1   |  支持  |                                                              |
 | 3.0.0.57  |  5.19   |  支持  |                                                              |  2.18_24-3  |  支持  |                                                              |
 | 2.9.5.56  |  5.13   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_24-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
 | 2.9.5.41  |  5.11   |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
@@ -142,12 +139,15 @@ env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Ten
 ### 自动切换(推荐)
 
 ```bash
-/opt/deepinwine/apps/Deepin-WeChat/run.sh -d
+/opt/apps/com.qq.weixin.deepin/files/run.sh -d
 ```
 
 这会安装需要的依赖，移除已安装的微信目录并回退对注册表文件的修改
 
-切换回 `wine`：
+> 从 `v3.0.0.57-2` 开始，该命令会切换到 AUR 仓库：[deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5)
+
+
+如果想切换回 `wine`：
 
 ```bash
 rm ~/.deepinwine/Deepin-WeChat/deepin
@@ -156,60 +156,23 @@ rm ~/.deepinwine/Deepin-WeChat/deepin
 如果要卸载自动安装的依赖：
 
 ```bash
+sudo pacman -Rns deepin-wine5
+```
+
+### 从 `deepin-wine 2.x` 迁移到 `deepin-wine 5.x`
+
+若之前使用的是 `deepin-wine 2.x`，更新到 `deepin-wine-wechat v3.0.0.57-2` 后会自动切换回 `wine`，运行命令：
+
+```bash
+/opt/apps/com.qq.weixin.deepin/files/run.sh -d
+```
+
+就会自动安装并切换到 `deepin-wine5`
+
+若此时没有其他应用在使用旧版 `deepin-wine`，就可以放心的卸载旧版 `deepin-wine` 及其依赖：
+
+```bash
 sudo pacman -Rns deepin-wine xsettingsd lib32-freetype2-infinality-ultimate
-```
-
-### 手动切换
-
-#### 1. 安装 `deepin-wine`
-
-```bash
-yay -S deepin-wine
-```
-
-#### 2. 对于非 GNOME 桌面(KDE, XFCE等)
-
-> 根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法
-
-需要安装 `xsettingsd`：
-
-```bash
-sudo pacman -S xsettingsd
-```
-
-修改 `/opt/deepinwine/apps/Deepin-WeChat/run.sh`：
-
-```diff
--WINE_CMD="wine"
-+WINE_CMD="deepin-wine"
-
- RunApp()
- {
-+    if [[ -z "$(ps -e | grep -o xsettingsd)" ]]
-+    then
-+        /usr/bin/xsettingsd &
-+    fi
-        if [ -d "$WINEPREFIX" ]; then
-                UpdateApp
-        else
-```
-
-**注意：对 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 的修改会在 `deepin-wine-wechat` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
-
-#### 3. 删除已安装的微信目录
-
-```bash
-rm -rf ~/.deepinwine/Deepin-WeChat
-```
-
-#### 4. 修复 `deepin-wine` 字体渲染发虚
-
-kde桌面参考：[deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36)
-
-deepin 桌面：
-
-```bash
-yay -S lib32-freetype2-infinality-ultimate
 ```
 
 **注意：切换到 `deepin-wine` 后，对 `wine` 的修改，如更改dpi，都改为对 `deepin-wine` 的修改**
@@ -233,7 +196,7 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" winecfg
 对于 `deepin-wine` ：
 
 ```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine winecfg
+env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
 ```
 
 ### GNOME 桌面上的悬浮窗口问题
@@ -244,46 +207,7 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine winecfg
 
 ### 消除阴影边框
 
-微信窗口不在最上方时，在其他窗口上会显示一个阴影边框
-
-参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决，或者使用[shadow.exe](shadow.exe)，在微信启动时运行，自动消除这个阴影边框
-
-> 根据[“用山寨方法解决wine运行微信残留阴影窗口的问题”](https://blog.kangkang.org/index.php/archives/397)，对原程序稍做修改编译出的 [shadow.exe](shadow.exe)，源码文件为 [shadow.cpp](shadow.cpp)
-
-你也可以自行编译这个程序：
-
-```bash
-# 安装windows交叉编译工具链
-yay -S mingw-w64-gcc
-
-# 编译
-i686-w64-mingw32-g++ -municode -m32 -static -s shadow.cpp -o shadow
-```
-
-对于 `v2.8.0.133-2` 及之前的版本，不自带这个程序，可以自行将[shadow.exe](shadow.exe)放置到 `~/.deepinwine/Deepin-WeChat/drive_c/shadow.exe`
-
-并参照[run.sh](run.sh)在 `/opt/deepinwine/apps/Deepin-WeChat/run.sh` 中加入如下几行：
-
-```diff
-CallApp()
-{
-	if [ ! -f "$WINEPREFIX/reinstalled" ]
-	then
-		touch $WINEPREFIX/reinstalled
--		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe
-+		env WINEDLLOVERRIDES="winemenubuilder.exe=d" WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/$WECHAT_INSTALLER-$WECHAT_VER.exe &
-	else
-        #Support use native file dialog
-        export ATTACH_FILE_DIALOG=1
-
-        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
-	fi
-+	# run 'shadow.exe' if process not exist
-+	if [[ -z "$(ps -e | grep -o 'shadow.exe')" ]]; then
-+		env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\shadow.exe" &
-+	fi
-}
-```
+微信窗口不在最上方时，在其他窗口上会显示一个阴影边框，参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
 
 ## 感谢
 
@@ -294,6 +218,7 @@ CallApp()
 <details open>
 <summary>2020</summary>
 
+* 2020-11-26 WeChat-3.0.0.57 2.9.5.41deepin7
 * 2020-10-16 WeChat-3.0.0.57
 * 2020-07-20 WeChat-2.9.5.56
 * 2020-07-02 WeChat-2.9.5.41

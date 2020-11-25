@@ -10,11 +10,8 @@ archlinux:
   - p7zip
   - wine
   - wine-mono
-  - wine_gecko
+  - wine-gecko
   - xorg-xwininfo
-  - xdotool
-  - wqy-microhei
-  - adobe-source-han-sans-cn-fonts
   - lib32-alsa-lib
   - lib32-alsa-plugins
   - lib32-libpulse

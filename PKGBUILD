@@ -20,7 +20,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "shadow.exe")
 md5sums=('42794ec8f1e61407e670f1382a0d72db'
   '2b103d675a045a2ef68c23c6c7339471'
-  '8df0ec751f3d426203be7bc32d3007e6'
+  'bf9d0a8470367fbca23a7e13e83d1932'
   'd83f1c3845f28abd81cbfd215089d3d8')
 
 build() {
@@ -29,6 +29,7 @@ build() {
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
   sed "13s/WeChat.exe/wechat.exe/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
+  sed "s/run.sh\".*/run.sh\"/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
   msg "Extracting Deepin Wine WeChat archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Cleaning up the original package directory ..."

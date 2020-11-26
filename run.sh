@@ -58,23 +58,30 @@ msg()
 
 SwitchToDeepinWine()
 {
-	PACKAGE_MANAGER="yay"
-	DEEPIN_WINE_DEPENDS="deepin-wine5"
-	if ! [ -x "$(command -v yay)" ]; then
-		if ! [ -x "$(command -v yaourt)" ]; then
-			msg 1 "Need to install 'yay' or 'yaourt' first." >&2
-			exit 1
-		else
-			$PACKAGE_MANAGER="yaourt"
-		fi
-	fi
-	msg 0 "Installing dependencies: ${DEEPIN_WINE_DEPENDS} ..."
-	$PACKAGE_MANAGER -S ${DEEPIN_WINE_DEPENDS} --needed
-	msg 0 "Redeploying app ..."
-	$START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" -r
-	touch -f $WINEPREFIX/deepin
-	echo "5" > $WINEPREFIX/deepin
-	msg 0 "Done."
+    PACKAGE_MANAGER="yay"
+    DEEPIN_WINE_DEPENDS="deepin-wine5"
+    if ! [ -x "$(command -v yay)" ]; then
+        if ! [ -x "$(command -v yaourt)" ]; then
+            msg 1 "Need to install 'yay' or 'yaourt' first." >&2
+            exit 1
+        else
+            $PACKAGE_MANAGER="yaourt"
+        fi
+    fi
+    for p in ${DEEPIN_WINE_DEPENDS}; do
+        if pacman -Qs $p > /dev/null ; then
+            msg 0 "$p is installed, skip ..."
+        else
+            msg 0 "Installing dependency: $p ..."
+            $PACKAGE_MANAGER -S $p
+        fi
+    done
+    msg 0 "Redeploying app ..."
+    $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" -r
+    echo "5" > $WINEPREFIX/deepin
+    rm -f $WINEPREFIX/reinstalled
+    msg 0 "Done."
+    exit 0
 }
 
 Run()
@@ -110,7 +117,7 @@ if [ -f "$WINEPREFIX/deepin" ]; then
     else
         rm $WINEPREFIX/deepin
         export APPRUN_CMD="wine"
-	fi
+    fi
 else
     export APPRUN_CMD="wine"
 fi
@@ -123,16 +130,11 @@ case $1 in
 	"-d" | "--deepin")
 		SwitchToDeepinWine
 		;;
-	"-u" | "--uri")
-		Run "$@"
-		;;
 	"-h" | "--help")
 		HelpApp
 		;;
 	*)
-		echo "Invalid option: $1"
-		echo "Use -h|--help to get help"
-		exit 1
+		Run "$@"
 		;;
 esac
 exit 0

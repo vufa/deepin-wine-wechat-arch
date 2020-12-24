@@ -23,7 +23,7 @@ pkgbase = deepin-wine-wechat
 	source = run.sh
 	source = shadow.exe
 	md5sums = 42794ec8f1e61407e670f1382a0d72db
-	md5sums = 2b103d675a045a2ef68c23c6c7339471
+	md5sums = f70cc4e13389db2f033610ce21c9c71e
 	md5sums = bf9d0a8470367fbca23a7e13e83d1932
 	md5sums = d83f1c3845f28abd81cbfd215089d3d8
 

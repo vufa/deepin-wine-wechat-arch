@@ -19,7 +19,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "shadow.exe")
 md5sums=('42794ec8f1e61407e670f1382a0d72db'
-  '2b103d675a045a2ef68c23c6c7339471'
+  'f70cc4e13389db2f033610ce21c9c71e'
   'bf9d0a8470367fbca23a7e13e83d1932'
   'd83f1c3845f28abd81cbfd215089d3d8')
 

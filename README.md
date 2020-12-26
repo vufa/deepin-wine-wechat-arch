@@ -1,9 +1,10 @@
-在Archlinux及衍生发行版上运行微信(WeChat)
+在 Archlinux 及衍生发行版上运行微信 (WeChat)
 =======
 
+  ![CI](https://github.com/taotieren/deepin-wine-wechat-arch/workflows/CI/badge.svg)
 <p align="center">
-  <a href="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch">
-    <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
+  <a href="https://travis-ci.com/taotieren/deepin-wine-wechat-arch">
+    <img src="https://travis-ci.com/taotieren/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
     <img src="https://img.shields.io/badge/WeChat-3.0.0.57-blue.svg" alt="WeChat Version">
@@ -11,11 +12,11 @@
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
   </a>
-  <a href="https://github.com/countstarlight/deepin-wine-wechat-arch/releases">
-    <img src="https://img.shields.io/github/downloads/countstarlight/deepin-wine-wechat-arch/total.svg" alt="GitHub Release">
+  <a href="https://github.com/taotieren/deepin-wine-wechat-arch/releases">
+    <img src="https://img.shields.io/github/downloads/taotieren/deepin-wine-wechat-arch/total.svg" alt="GitHub Release">
   </a>
-  <a href="https://github.com/countstarlight/deepin-wine-wechat-arch/issues">
-    <img src="https://img.shields.io/github/issues/countstarlight/deepin-wine-wechat-arch.svg" alt="GitHub Issues">
+  <a href="https://github.com/taotieren/deepin-wine-wechat-arch/issues">
+    <img src="https://img.shields.io/github/issues/taotieren/deepin-wine-wechat-arch.svg" alt="GitHub Issues">
   </a>
 </p>
 
@@ -73,9 +74,9 @@ yay -S deepin-wine-wechat
 
 ### 用安装包安装
 
-> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
+> 由 [Travis CI](https://travis-ci.com/taotieren/deepin-wine-wechat-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
 
-在 [GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
+在 [GitHub Release](https://github.com/taotieren/deepin-wine-wechat-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
 ```bash
 sudo pacman -U #下载的包名
@@ -90,7 +91,7 @@ md5sum -c *.md5
 ### 本地打包安装
 
 ```shell
- git clone https://github.com/countstarlight/deepin-wine-wechat-arch.git
+ git clone https://github.com/taotieren/deepin-wine-wechat-arch.git
 
  cd deepin-wine-wechat-arch
   
@@ -229,11 +230,14 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
 
 * [Wuhan Deepin Technology Co.,Ltd.](http://www.deepin.org/)
 
+* [@countstarlight](https://github.com/countstarlight) 的 [countstarlight-deepin-wine-wechat-arch](https://github.com/countstarlight/deepin-wine-wechat-arch)
+
 ## 更新日志
 
 <details open>
 <summary>2020</summary>
 
+* 2020-12-24 WeChat-3.0.0.57-2
 * 2020-11-26 WeChat-3.0.0.57 2.9.5.41deepin7
 * 2020-10-16 WeChat-3.0.0.57
 * 2020-07-20 WeChat-2.9.5.56

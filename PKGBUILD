@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.1.0.41
+pkgver=3.1.0.72
 wechat_installer=WeChatSetup
 deepinwechatver=2.9.5.41deepin7
 debpkgname="com.qq.weixin.deepin"
@@ -16,12 +16,10 @@ install="deepin-wine-wechat.install"
 _mirror="https://cdn-package-store6.deepin.com"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
-  "run.sh"
-  "shadow.exe")
+  "run.sh")
 md5sums=('42794ec8f1e61407e670f1382a0d72db'
-  'f70cc4e13389db2f033610ce21c9c71e'
-  'f912adbb6ab0abea416c0fa444b605af'
-  'd83f1c3845f28abd81cbfd215089d3d8')
+  'c09d13e6effb9c85d731837e553df0fa'
+  '5344fef8d3dc4311738a64ad8b2bf014')
 
 build() {
   msg "Extracting DPKG package ..."

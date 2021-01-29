@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.1.0.41-blue.svg" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.1.0.72-blue.svg" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat.svg" alt="AUR Version">
@@ -27,6 +27,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依�
     - [从AUR安装](#从aur安装)
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
+- [设置](#设置)
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
@@ -37,6 +38,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依�
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
     - [GNOME 桌面上的悬浮窗口问题](#gnome-桌面上的悬浮窗口问题)
     - [消除阴影边框](#消除阴影边框)
+    - [唤出已运行的WeChat窗口](#唤出已运行的wechat窗口)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
@@ -73,7 +75,7 @@ yay -S deepin-wine-wechat
 
 ### 用安装包安装
 
-> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
+> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [countstarlight/arch-travis](https://hub.docker.com/r/countstarlight/arch-travis) 中自动构建的 ArchLinux 安装包
 
 在 [GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
@@ -108,27 +110,44 @@ EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 
 **注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
 
+## 设置
+
+> dpi，目录映射等可以在 `winecfg` 进行设置
+
+如果使用默认的 `wine`，打开 `winecfg` 的命令为：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" winecfg
+```
+
+如果已经[切换到 `deepin-wine`](#切换到-deepin-wine)，打开 `winecfg` 的命令为：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
+```
+
 ## 兼容性记录
 
-|    版本    |  wine   |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
-| :--------: | :-----: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
-| 3.1.0.41-1 |  5.22   |    部分    | 截图功能不可用：[#73](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
-| 3.0.0.57-2 |  5.22   | **不支持** | 微信安装程序不能启动：[#92](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/92) |  5.0.16-1   |  支持  |                                                              |
-| 3.0.0.57-1 |  5.19   |    支持    |                                                              |  2.18_24-3  |  支持  |                                                              |
-|  2.9.5.56  |  5.13   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_24-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
-|  2.9.5.41  |  5.11   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
-| 2.9.0.123  |   5.7   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
-| 2.9.0.114  |   5.6   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.9.0.112  |   5.5   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.133  |   5.3   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.112  | 5.0-rc4 |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.106  |  4.19   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-|  2.7.1.88  |  4.19+  |    支持    |                                                              |             |        |                                                              |
-|  2.7.1.88  |  4.18   |    部分    |                      不能使用中文输入法                      |             |        |                                                              |
-|  2.7.1.85  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  |   ?    |                                                              |
-|  2.7.1.82  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
-|  2.7.1.82  |  4.17   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
-|  2.6.8.65  |  4.16   |    支持    |                                                              |  2.18_18-2  |  支持  |                                                              |
+|   微信    |  wine   |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
+| :-------: | :-----: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+| 3.1.0.72  |   6.0   |    部分    | 截图功能不可用：[#73](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
+| 3.1.0.41  |  5.22   |    部分    | 截图功能不可用：[#73](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
+| 3.0.0.57  |  5.22   | **不支持** | 微信安装程序不能启动：[#92](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/92) |  5.0.16-1   |  支持  |                                                              |
+| 3.0.0.57  |  5.19   |    支持    |                                                              |  2.18_24-3  |  支持  |                                                              |
+| 2.9.5.56  |  5.13   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_24-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
+| 2.9.5.41  |  5.11   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
+| 2.9.0.123 |   5.7   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |
+| 2.9.0.114 |   5.6   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
+| 2.9.0.112 |   5.5   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
+| 2.8.0.133 |   5.3   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
+| 2.8.0.112 | 5.0-rc4 |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
+| 2.8.0.106 |  4.19   |    部分    | 发送图片有问题: [#42](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
+| 2.7.1.88  |  4.19+  |    支持    |                                                              |             |        |                                                              |
+| 2.7.1.88  |  4.18   |    部分    |                      不能使用中文输入法                      |             |        |                                                              |
+| 2.7.1.85  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  |   ?    |                                                              |
+| 2.7.1.82  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
+| 2.7.1.82  |  4.17   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
+| 2.6.8.65  |  4.16   |    支持    |                                                              |  2.18_18-2  |  支持  |                                                              |
 
 ## 切换到 `deepin-wine`
 
@@ -152,7 +171,7 @@ EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 如果想切换回 `wine`：
 
 ```bash
-rm ~/.deepinwine/Deepin-WeChat/deepin
+rm $HOME/.deepinwine/Deepin-WeChat/deepin
 ```
 
 如果要卸载自动安装的依赖：
@@ -163,7 +182,7 @@ sudo pacman -Rns deepin-wine5
 
 ### 从 `deepin-wine 2.x` 迁移
 
-若之前使用的是 `deepin-wine 2.x`，更新到 `deepin-wine-wechat v3.0.0.57-2` 后会自动切换回 `wine`，运行命令：
+若之前使用的是 `deepin-wine 2.x`，更新到 `deepin-wine-wechat v3.0.0.57-2` 及之后的版本会自动切换回 `wine`，运行命令：
 
 ```bash
 /opt/apps/com.qq.weixin.deepin/files/run.sh -d
@@ -202,19 +221,7 @@ sudo pacman -Rns deepin-wine-wechat
 
 ### 高分辨率屏幕支持
 
-在 `winecfg` 的Graphics选项卡中修改dpi，如 修改为`192`
-
-对于 `wine`：
-
-```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" winecfg
-```
-
-对于 `deepin-wine` ：
-
-```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
-```
+参照[设置](#设置)打开 `winecfg` ，在选项卡 `Graphics` 中修改dpi，如 修改为`192`
 
 ### GNOME 桌面上的悬浮窗口问题
 
@@ -226,6 +233,18 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
 
 微信窗口不在最上方时，在其他窗口上会显示一个阴影边框，参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
 
+### 唤出已运行的WeChat窗口
+
+> 根据 [deepin-wine-wechat-arch#96](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/96)，由[szy132](https://github.com/szy132)提供的方法
+
+运行命令：
+
+```bash
+bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
+```
+
+可以参考 [deepin-wine-wechat-arch#96](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/96) 将该命令添加到桌面环境的全局快捷键中，方便使用
+
 ## 感谢
 
 * [Wuhan Deepin Technology Co.,Ltd.](http://www.deepin.org/)
@@ -233,6 +252,12 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-WeChat" deepin-wine5 winecfg
 ## 更新日志
 
 <details open>
+<summary>2021</summary>
+
+* 2021-01-29 WeChat-3.1.0.72
+
+</details>
+<details>
 <summary>2020</summary>
 
 * 2020-12-29 WeChat-3.1.0.41

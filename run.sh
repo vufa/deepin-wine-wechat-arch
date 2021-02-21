@@ -85,6 +85,15 @@ SwitchToDeepinWine()
     exit 0
 }
 
+OpenWinecfg()
+{
+    if [ -f "$WINEPREFIX/deepin" ]; then
+        env WINEPREFIX=$WINEPREFIX deepin-wine5 winecfg
+    else
+        env WINEPREFIX=$WINEPREFIX winecfg
+    fi
+}
+
 Run()
 {
     extract_archive "$ARCHIVE_FILE_DIR/helper_archive.7z" "$ARCHIVE_FILE_DIR/helper_archive.md5sum" "$SPECIFY_SHELL_DIR"
@@ -108,6 +117,7 @@ Run()
 HelpApp()
 {
 	echo " Extra Commands:"
+	echo " winecfg        Open winecfg"
 	echo " -d/--deepin    Switch to 'deepin-wine'"
 	echo " -h/--help      Show program help info"
 }
@@ -128,6 +138,9 @@ if [ -z $1 ]; then
 	exit 0
 fi
 case $1 in
+	"winecfg")
+		OpenWinecfg
+		;;
 	"-d" | "--deepin")
 		SwitchToDeepinWine
 		;;

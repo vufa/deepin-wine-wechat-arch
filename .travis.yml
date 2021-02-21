@@ -1,4 +1,6 @@
-sudo: required
+arch: amd64
+os: linux
+dist: focal
 
 services:
 - docker
@@ -29,7 +31,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
-  api_key: $GH_TOKEN
+  token: $GH_TOKEN
   file_glob: true
   file:
     - "deepin-wine-wechat*.pkg*"

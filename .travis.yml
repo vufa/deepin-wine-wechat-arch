@@ -14,6 +14,7 @@ archlinux:
   - wine-mono
   - wine-gecko
   - xorg-xwininfo
+  - wqy-microhei
   - lib32-alsa-lib
   - lib32-alsa-plugins
   - lib32-libpulse

@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/travis/countstarlight/deepin-wine-wechat-arch?&logo=travis&style=flat-square" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.2.1.151-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.2.1.154-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -61,9 +61,9 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-**注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
+:warning: **注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
 
-以下三种安装方式效果相同，选择一种即可
+:bulb: 以下三种安装方式效果相同，选择一种即可
 
 ### 从AUR安装
 
@@ -101,18 +101,18 @@ md5sum -c *.md5
 
 用上述三种安装方式之一安装完成后，运行应用菜单中创建的 WeChat 快捷方式，首次运行会用 WeChat 的安装包进行安装
 
-**注意：安装微信时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/apps/com.qq.weixin.deepin/files/run.sh`)：**
+:warning: **注意：安装微信时不建议修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-wechat` 的启动脚本(`/opt/apps/com.qq.weixin.deepin/files/run.sh`)：**
 
 ```bash
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 ```
 改为修改后的安装路径，否则只有安装后第一次能够运行
 
-**注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
+:warning: **注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
 
 ## 设置
 
-dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命令为：
+dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命令为：
 
 ```bash
 /opt/apps/com.qq.weixin.deepin/files/run.sh winecfg
@@ -122,6 +122,7 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 |   微信    |  wine   |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-------: | :-----: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+| 3.2.1.154 |   6.6   |            | 截图功能不可用：[#87](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.151 |   6.6   |            | 截图功能不可用：[#87](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.141 |   6.6   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.127 |   6.5   |    部分    | 群聊闪退&截图功能不可用：[#87](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
@@ -150,7 +151,7 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，截图功能也不可用，可以选择切换到 `deepin-wine`。
 
-**注意：切换前先确保 `deepin-wine` 支持**
+:warning: **注意：切换前先确保 `deepin-wine` 支持**
 
 ### 自动切换(推荐)
 
@@ -245,6 +246,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-04-23 WeChat-3.2.1.154
 * 2021-04-19 WeChat-3.2.1.151
 * 2021-04-18 WeChat-3.2.1.141
 * 2021-04-02 WeChat-3.2.1.127

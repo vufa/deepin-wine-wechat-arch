@@ -33,7 +33,7 @@ extract_archive()
 }
 
 BOTTLENAME="Deepin-WeChat"
-APPVER="2.9.5.41deepin7"
+APPVER="3.2.1.154deepin8"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_VER="3.2.1.154"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
@@ -106,6 +106,9 @@ Run()
         if [ ! -f "$WINEPREFIX/reinstalled" ];then
             touch $WINEPREFIX/reinstalled
             env WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$WECHAT_INSTALLER_PATH" "$@"
+            if [ $APPRUN_CMD = "deepin-wine5" ]; then
+                echo "5" > $WINEPREFIX/deepin
+            fi
         else
             $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" "$@"
         fi

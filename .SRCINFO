@@ -1,7 +1,7 @@
 pkgbase = deepin-wine-wechat
 	pkgdesc = Tencent WeChat on Deepin Wine(com.qq.weixin.deepin) For Archlinux
 	pkgver = 3.2.1.154
-	pkgrel = 1
+	pkgrel = 2
 	url = https://weixin.qq.com/
 	install = deepin-wine-wechat.install
 	arch = x86_64
@@ -19,12 +19,12 @@ pkgbase = deepin-wine-wechat
 	depends = lib32-mpg123
 	depends = lib32-libldap
 	conflicts = deepin-wechat
-	source = https://cdn-package-store6.deepin.com/appstore/pool/appstore/c/com.qq.weixin.deepin/com.qq.weixin.deepin_2.9.5.41deepin7_i386.deb
+	source = https://cdn-package-store6.deepin.com/appstore/pool/appstore/c/com.qq.weixin.deepin/com.qq.weixin.deepin_3.2.1.154deepin8_i386.deb
 	source = WeChatSetup-3.2.1.154.exe::https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
 	source = run.sh
-	md5sums = 42794ec8f1e61407e670f1382a0d72db
+	md5sums = 3246f43cdfd2a4de9597d7018cb21753
 	md5sums = ea0a150ac98d022e9c6054154f27ddb4
-	md5sums = a5557c5b51e5ef5fba8c2264ad54e08e
+	md5sums = 5515d84e04edb5981a73aad44606589b
 
 pkgname = deepin-wine-wechat
 

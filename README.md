@@ -246,6 +246,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-05-07 WeChat-3.2.1.154 3.2.1.154deepin8
 * 2021-04-23 WeChat-3.2.1.154
 * 2021-04-19 WeChat-3.2.1.151
 * 2021-04-18 WeChat-3.2.1.141

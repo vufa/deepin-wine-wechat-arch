@@ -18,8 +18,8 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh")
 md5sums=('3246f43cdfd2a4de9597d7018cb21753'
-  'ea0a150ac98d022e9c6054154f27ddb4'
-  '5515d84e04edb5981a73aad44606589b')
+         'ea0a150ac98d022e9c6054154f27ddb4'
+         'f4e982842a71462126350360a01b9e94')
 
 build() {
   msg "Extracting DPKG package ..."

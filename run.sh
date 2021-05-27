@@ -65,7 +65,7 @@ SwitchToDeepinWine()
             msg 1 "Need to install 'yay' or 'yaourt' first." >&2
             exit 1
         else
-            $PACKAGE_MANAGER="yaourt"
+            PACKAGE_MANAGER="yaourt"
         fi
     fi
     for p in ${DEEPIN_WINE_DEPENDS}; do

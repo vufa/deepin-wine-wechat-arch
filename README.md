@@ -2,8 +2,8 @@
 ========
 
 <p align="center">
-  <a href="https://travis-ci.org/countstarlight/deepin-wine-wechat-arch">
-    <img src="https://img.shields.io/travis/countstarlight/deepin-wine-wechat-arch?&logo=travis&style=flat-square" alt="Build Status">
+  <a href="https://github.com/countstarlight/deepin-wine-wechat-arch/actions">
+    <img src="https://img.shields.io/github/workflow/status/countstarlight/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
     <img src="https://img.shields.io/badge/WeChat-3.2.1.154-blue?style=flat-square&logo=wechat" alt="WeChat Version">
@@ -75,7 +75,7 @@ yay -S deepin-wine-wechat
 
 ### 用安装包安装
 
-> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-wechat-arch) 在 Docker 容器 [countstarlight/arch-travis](https://hub.docker.com/r/countstarlight/arch-travis) 中自动构建的 ArchLinux 安装包
+> 由 [GitHub Action](https://github.com/countstarlight/deepin-wine-wechat-arch/actions) 在 Docker 容器 [countstarlight/makepkg](https://hub.docker.com/repository/docker/countstarlight/makepkg) 中自动构建的 ArchLinux 安装包
 
 在 [GitHub Release](https://github.com/countstarlight/deepin-wine-wechat-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
@@ -149,7 +149,7 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 > 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法
 
-原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，截图功能也不可用，可以选择切换到 `deepin-wine`。
+`deepin-wine-wechat` 默认使用官方仓库中的 `wine`，原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，截图功能也不可用，可以选择切换到 `deepin-wine`。
 
 :warning: **注意：切换前先确保 `deepin-wine` 支持**
 
@@ -164,15 +164,10 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 > 从 `v3.0.0.57-2` 开始，该命令会切换到 AUR 仓库：[deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5)
 
 
-如果想切换回 `wine`：
+如果想切换回原版 `wine` 并卸载为 `deepin-wine` 自动安装的依赖：
 
 ```bash
 rm $HOME/.deepinwine/Deepin-WeChat/deepin
-```
-
-如果要卸载自动安装的依赖：
-
-```bash
 sudo pacman -Rns deepin-wine5
 ```
 

@@ -35,7 +35,7 @@ extract_archive()
 BOTTLENAME="Deepin-WeChat"
 APPVER="3.2.1.154deepin8"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
-WECHAT_VER="3.2.1.154"
+WECHAT_VER="3.3.0.93"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="$HOME/.deepinwine/deepin-wine-helper/run_v3.sh"
 WECHAT_INSTALLER="WeChatSetup"

@@ -1,11 +1,11 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.2.1.154
+pkgver=3.3.0.93
 wechat_installer=WeChatSetup
 deepinwechatver=3.2.1.154deepin8
 debpkgname="com.qq.weixin.deepin"
-pkgrel=2
+pkgrel=1
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -16,10 +16,12 @@ install="deepin-wine-wechat.install"
 _mirror="https://cdn-package-store6.deepin.com"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
-  "run.sh")
+  "run.sh"
+  "reg.patch")
 md5sums=('3246f43cdfd2a4de9597d7018cb21753'
-         'ea0a150ac98d022e9c6054154f27ddb4'
-         'f4e982842a71462126350360a01b9e94')
+         'b910c29a00a44b5b8a40c8d158f4dca6'
+         '18349448422572dd9a784eb5c6367c6c'
+         'f3257f8fc9e73ea88b3a46372634f82f')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -32,6 +34,8 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Cleaning up the original package directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
+  msg "Patching reg files ..."
+  patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
   msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."

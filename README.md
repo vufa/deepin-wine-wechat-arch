@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/travis/countstarlight/deepin-wine-wechat-arch?&logo=travis&style=flat-square" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.2.1.154-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.3.0.93-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -122,6 +122,7 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 |   微信    |  wine   |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-------: | :-----: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+| 3.3.0.93  |  6.11   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.154 |   6.6   |            | 截图功能不可用：[#87](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.151 |   6.6   |            | 截图功能不可用：[#87](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.141 |   6.6   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
@@ -246,6 +247,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-06-21 WeChat-3.3.0.93
 * 2021-05-07 WeChat-3.2.1.154 3.2.1.154deepin8
 * 2021-04-23 WeChat-3.2.1.154
 * 2021-04-19 WeChat-3.2.1.151

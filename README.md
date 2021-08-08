@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/travis/countstarlight/deepin-wine-wechat-arch?&logo=travis&style=flat-square" alt="Build Status">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.3.0.115-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.3.5.34-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -248,6 +248,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-08-08 WeChat-3.3.5.34
 * 2021-07-05 WeChat-3.3.0.115
 * 2021-06-21 WeChat-3.3.0.93
 * 2021-05-07 WeChat-3.2.1.154 3.2.1.154deepin8

@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.3.5.34
+pkgver=3.3.5.42
 wechat_installer=WeChatSetup
 deepinwechatver=3.2.1.154deepin8
 debpkgname="com.qq.weixin.deepin"
@@ -13,14 +13,14 @@ license=('custom')
 depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
-_mirror="https://cdn-package-store6.deepin.com"
+_mirror="https://com-store-packages.uniontech.com"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "run.sh"
   "reg.patch")
 md5sums=('3246f43cdfd2a4de9597d7018cb21753'
-         'b00096cd430a6e32c65e4fa98312599b'
-         'c392c44fa71e97b8d836c7bc376587f0'
+         '4204a40f3b9f4123c5347365a453473e'
+         'fe6d9165926762788de03e9c67038c0a'
          'f3257f8fc9e73ea88b3a46372634f82f')
 
 build() {

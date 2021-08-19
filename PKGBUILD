@@ -10,7 +10,11 @@ pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
-depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+depends=('p7zip' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+optdepends=(
+  'wine: official wine'
+  'deepin-wine5: deepin forked wine'
+)
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://com-store-packages.uniontech.com"

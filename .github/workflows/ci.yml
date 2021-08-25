@@ -19,6 +19,8 @@ jobs:
       - name: Build archlinux package
         uses: countstarlight/arch-makepkg-action@master
         with:
+          repos: >
+            archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
           packages: >
             p7zip
             deepin-wine6-stable

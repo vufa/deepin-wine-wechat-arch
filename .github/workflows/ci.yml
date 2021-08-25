@@ -33,7 +33,7 @@ jobs:
             lib32-openal
             lib32-mpg123
             lib32-libldap
-          scripts: "makepkg && ./gen.sh -m"
+          scripts: "sudo pacman -S archlinuxcn-keyring && makepkg && ./gen.sh -m"
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')

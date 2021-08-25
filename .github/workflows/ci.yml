@@ -21,6 +21,7 @@ jobs:
         with:
           repos: >
             archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+          before: "sudo pacman -S archlinuxcn-keyring"
           packages: >
             p7zip
             deepin-wine6-stable
@@ -33,7 +34,7 @@ jobs:
             lib32-openal
             lib32-mpg123
             lib32-libldap
-          scripts: "sudo pacman -S archlinuxcn-keyring && makepkg && ./gen.sh -m"
+          scripts: "makepkg && ./gen.sh -m"
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')

@@ -21,9 +21,8 @@ jobs:
         with:
           packages: >
             p7zip
-            wine
-            wine-mono
-            wine-gecko
+            deepin-wine6-stable
+            deepin-wine-helper
             xorg-xwininfo
             wqy-microhei
             lib32-alsa-lib

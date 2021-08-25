@@ -19,7 +19,9 @@
   </a>
 </p>
 
-Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依赖`deepin-wine`，包含定制的运行脚本，微信安装包替换为官方最新
+Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含定制的运行脚本，微信安装包替换为官方最新
+
+:warning: `deepin-wine-wechat` 从 `v3.3.5.42` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
 
 <!-- TOC -->
 
@@ -31,7 +33,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，不依�
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
-    - [从 `deepin-wine 2.x` 迁移](#从-deepin-wine-2x-迁移)
+    - [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
@@ -149,45 +151,29 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 ## 切换到 `deepin-wine`
 
-> 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法
-
-`deepin-wine-wechat` 默认使用官方仓库中的 `wine`，原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，截图功能也不可用，可以选择切换到 `deepin-wine`。
-
-:warning: **注意：切换前先确保 `deepin-wine` 支持**
+:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
 ### 自动切换(推荐)
 
-```bash
-/opt/apps/com.qq.weixin.deepin/files/run.sh -d
-```
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
-这会安装需要的依赖，移除已安装的微信目录并回退对注册表文件的修改
+### 从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移
 
-> 从 `v3.0.0.57-2` 开始，该命令会切换到 AUR 仓库：[deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5)
+更新到 `deepin-wine-wechat v3.3.5.42-2` 及之后的版本后，依赖变更为 `deepin-wine6-stable`，
 
-
-如果想切换回原版 `wine` 并卸载为 `deepin-wine` 自动安装的依赖：
-
-```bash
-rm $HOME/.deepinwine/Deepin-WeChat/deepin
-sudo pacman -Rns deepin-wine5
-```
-
-### 从 `deepin-wine 2.x` 迁移
-
-若之前使用的是 `deepin-wine 2.x`，更新到 `deepin-wine-wechat v3.0.0.57-2` 及之后的版本会自动切换回 `wine`，运行命令：
-
-```bash
-/opt/apps/com.qq.weixin.deepin/files/run.sh -d
-```
-
-就会自动安装并切换到 `deepin-wine5`
-
-若此时没有其他应用在使用旧版 `deepin-wine`，就可以放心的卸载旧版 `deepin-wine` 及其依赖：
+如果此时没有其他应用在使用 `wine` 和旧版 `deepin-wine`，就可以放心的卸载旧版 `wine`, `deepin-wine` 及其依赖：
 
 ```bash
 sudo pacman -S lib32-freetype2 #用原版替换lib32-freetype2-infinality-ultimate
-sudo pacman -Rns deepin-wine xsettingsd
+sudo pacman -Rns deepin-wine xsettingsd # 卸载 deepin-wine 2.x (如果有)
+sudo pacman -Rns deepin-wine5 # 卸载 deepin-wine5 (如果有)
+sudo pacman -Rns wine wine-mono wine-gecko # 卸载 wine 及其依赖(如果有)
+```
+
+同时，由于 deepin 的打包中不再包含 `deepin-wine-helper`，现改为使用AUR仓库[deepin-wine-helper](https://aur.archlinux.org/packages/deepin-wine-helper)，可以删除之前的 `deepin-wine-helper`：
+
+```bash
+rm -rf $HOME/.deepinwine/deepin-wine-helper
 ```
 
 ## 卸载
@@ -206,7 +192,7 @@ sudo pacman -Rns deepin-wine-wechat
 
 ### 不能截图
 
-参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
 ### 高分辨率屏幕支持
 
@@ -220,7 +206,7 @@ sudo pacman -Rns deepin-wine-wechat
 
 ### 消除阴影边框
 
-微信窗口不在最上方时，在其他窗口上会显示一个阴影边框，参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
 ### 唤出已运行的WeChat窗口
 
@@ -243,6 +229,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-08-25 WeChat-3.3.5.42 3.2.1.154deepin13
 * 2021-08-13 WeChat-3.3.5.42
 * 2021-08-08 WeChat-3.3.5.34
 * 2021-07-05 WeChat-3.3.0.115

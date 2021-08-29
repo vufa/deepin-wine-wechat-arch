@@ -12,7 +12,7 @@ version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; 
 BOTTLENAME="Deepin-WeChat"
 APPVER="3.2.1.154deepin13"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
-WECHAT_VER="3.3.5.42"
+WECHAT_VER="3.3.5.50"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
 WECHAT_INSTALLER="WeChatSetup"
@@ -44,11 +44,8 @@ Run()
     if [ -n "$EXEC_PATH" ];then
         if [ ! -f "$WINEPREFIX/reinstalled" ];then
             # run installer
-            touch $WINEPREFIX/reinstalled
             env WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$WECHAT_INSTALLER_PATH" "$@"
-            if [ $APPRUN_CMD = "deepin-wine5" ]; then
-                echo "5" > $WINEPREFIX/deepin
-            fi
+            touch $WINEPREFIX/reinstalled
         else
             if [ -z "${EXEC_PATH##*.lnk*}" ];then
                 $START_SHELL_PATH $BOTTLENAME $APPVER "C:/windows/command/start.exe" "/Unix" "$EXEC_PATH" "$@"

@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/countstarlight/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.3.5.42-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.3.5.50-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -21,7 +21,7 @@
 
 Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含定制的运行脚本，微信安装包替换为官方最新
 
-:warning: `deepin-wine-wechat` 从 `v3.3.5.42` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
+:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
 
 <!-- TOC -->
 
@@ -48,7 +48,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 
 ## 安装
 
-`deepin-wine-wechat`依赖`Multilib`仓库中的`wine`，`wine-gecko`和`wine-mono`，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
+`deepin-wine-wechat`依赖`Multilib`仓库中的一些32位库，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
 
 ```diff
 # If you want to run 32 bit applications on your x86_64 system,
@@ -229,6 +229,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-08-29 WeChat-3.3.5.50
 * 2021-08-25 WeChat-3.3.5.42 3.2.1.154deepin13
 * 2021-08-13 WeChat-3.3.5.42
 * 2021-08-08 WeChat-3.3.5.34

@@ -19,7 +19,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "reg.patch")
 md5sums=('1cc7cfc9f77f60147f476121bd9e7542'
-         'e2f89dcf50f62e4d813e85d1279415e7'
+         '4204a40f3b9f4123c5347365a453473e'
          '907f895e5ba327d42152bf79d43bd205'
          'f3257f8fc9e73ea88b3a46372634f82f')
 

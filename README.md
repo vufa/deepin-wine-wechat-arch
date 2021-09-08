@@ -198,11 +198,9 @@ sudo pacman -Rns deepin-wine-wechat
 
 参照[设置](#设置)打开 `winecfg` ，在选项卡 `Graphics` 中修改dpi，如 修改为`192`
 
-### GNOME 桌面上的悬浮窗口问题
+### GNOME 桌面上的托盘图标
 
-> 根据 [deepin-wine-tim-arch#2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)，由[EricDracula](https://github.com/EricDracula)提供的方法
-
-安装 GNOME 插件: [TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
+安装 GNOME 插件: [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
 
 ### 消除阴影边框
 

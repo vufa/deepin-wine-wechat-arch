@@ -39,6 +39,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
     - [GNOME 桌面上的悬浮窗口问题](#gnome-桌面上的悬浮窗口问题)
+    - [中文输入显示异常](#输入中文显示方框)
     - [消除阴影边框](#消除阴影边框)
     - [唤出已运行的WeChat窗口](#唤出已运行的wechat窗口)
 - [感谢](#感谢)
@@ -201,6 +202,14 @@ sudo pacman -Rns deepin-wine-wechat
 ### GNOME 桌面上的托盘图标
 
 安装 GNOME 插件: [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
+
+### 输入中文显示方框
+
+可能缺少Noto Sans CJK SC Regular字体
+```bash
+sudo pacman -S noto-fonts-cjk
+```
+或者手动下载[NotoSansCJK](https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip)，解压安装Noto Sans CJK SC Regular
 
 ### 消除阴影边框
 

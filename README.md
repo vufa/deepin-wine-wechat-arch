@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/countstarlight/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.3.5.50-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.4.0.38-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -38,8 +38,8 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
-    - [GNOME 桌面上的悬浮窗口问题](#gnome-桌面上的悬浮窗口问题)
-    - [中文输入显示异常](#输入中文显示方框)
+    - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
+    - [输入中文显示方框](#输入中文显示方框)
     - [消除阴影边框](#消除阴影边框)
     - [唤出已运行的WeChat窗口](#唤出已运行的wechat窗口)
 - [感谢](#感谢)
@@ -236,6 +236,7 @@ bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
 <details open>
 <summary>2021</summary>
 
+* 2021-10-21 WeChat-3.4.0.38
 * 2021-08-29 WeChat-3.3.5.50
 * 2021-08-25 WeChat-3.3.5.42 3.2.1.154deepin13
 * 2021-08-13 WeChat-3.3.5.42

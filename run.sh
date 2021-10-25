@@ -5,7 +5,7 @@
 #   Author:     Li LongYu <lilongyu@linuxdeepin.com>
 #               Peng Hao <penghao@linuxdeepin.com>
 
-#               Codist <countstarlight@gmail.com>
+#               Vufa <countstarlight@gmail.com>
 
 version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 

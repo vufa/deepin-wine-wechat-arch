@@ -28,6 +28,7 @@ jobs:
             deepin-wine-helper
             xorg-xwininfo
             wqy-microhei
+            noto-fonts-cjk
             lib32-alsa-lib
             lib32-alsa-plugins
             lib32-libpulse

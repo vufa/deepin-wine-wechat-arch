@@ -1,11 +1,11 @@
 info() {
     echo -e "\033[0;34m============================提示/INFO==============================="
     echo -e "* 反馈问题(Report issue):"
-    echo -e "  https://github.com/countstarlight/deepin-wine-wechat-arch/issues"
+    echo -e "  https://github.com/vufa/deepin-wine-wechat-arch/issues"
     echo -e "* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
-    echo -e "  https://github.com/countstarlight/deepin-wine-wechat-arch"
+    echo -e "  https://github.com/vufa/deepin-wine-wechat-arch"
     echo -e "* 安装包下载(Installation package download):"
-    echo -e "  https://github.com/countstarlight/deepin-wine-wechat-arch/releases"
+    echo -e "  https://github.com/vufa/deepin-wine-wechat-arch/releases"
     echo -e "====================================================================\033[0m"
 }
 post_install() {

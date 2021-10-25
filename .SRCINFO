@@ -11,6 +11,7 @@ pkgbase = deepin-wine-wechat
 	depends = deepin-wine-helper
 	depends = xorg-xwininfo
 	depends = wqy-microhei
+	depends = noto-fonts-cjk
 	depends = lib32-alsa-lib
 	depends = lib32-alsa-plugins
 	depends = lib32-libpulse
@@ -24,7 +25,7 @@ pkgbase = deepin-wine-wechat
 	source = reg.patch
 	md5sums = 1cc7cfc9f77f60147f476121bd9e7542
 	md5sums = a9b96f879714fca41f03c84714c965ec
-	md5sums = 437943603d47e2b91779bec01c57cc3d
+	md5sums = 8c0f7d4324309bd97dbf83a5ce6f1cbd
 	md5sums = f3257f8fc9e73ea88b3a46372634f82f
 
 pkgname = deepin-wine-wechat

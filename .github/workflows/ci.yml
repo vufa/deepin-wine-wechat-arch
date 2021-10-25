@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build archlinux package
-        uses: countstarlight/arch-makepkg-action@master
+        uses: vufa/arch-makepkg-action@master
         with:
           repos: >
             archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch

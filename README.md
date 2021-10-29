@@ -213,7 +213,7 @@ sudo pacman -Rns deepin-wine-wechat
 运行命令：
 
 ```bash
-bash $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
+/opt/deepinwine/tools/sendkeys.sh w wechat 4
 ```
 
 可以参考 [deepin-wine-wechat-arch#96](https://github.com/vufa/deepin-wine-wechat-arch/issues/96) 将该命令添加到桌面环境的全局快捷键中，方便使用

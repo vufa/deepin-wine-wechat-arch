@@ -48,7 +48,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 
 ## 安装
 
-`deepin-wine-wechat`依赖`Multilib`仓库中的一些32位库，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
+`deepin-wine-wechat`依赖`Multilib`仓库中的一些32位库，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释并更新本地数据库([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
 
 ```diff
 # If you want to run 32 bit applications on your x86_64 system,
@@ -61,6 +61,10 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 -#Include = /etc/pacman.d/mirrorlist
 +[multilib]
 +Include = /etc/pacman.d/mirrorlist
+```
+保存后执行
+```shell
+sudo pacman -Sy
 ```
 
 :warning: **注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**

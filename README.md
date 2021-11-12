@@ -236,6 +236,7 @@ sudo pacman -Rns deepin-wine-wechat
 <details open>
 <summary>2021</summary>
 
+* 2021-11-12 WeChat-3.4.0.38 3.2.1.154deepin14
 * 2021-10-21 WeChat-3.4.0.38
 * 2021-08-29 WeChat-3.3.5.50
 * 2021-08-25 WeChat-3.3.5.42 3.2.1.154deepin13

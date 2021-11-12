@@ -21,7 +21,7 @@
 
 Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含定制的运行脚本，微信安装包替换为官方最新
 
-:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
+:warning: `deepin-wine-wechat` 从 `v3.4.0.38-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 
 <!-- TOC -->
 
@@ -33,7 +33,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
-    - [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
+    - [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
     - [不能截图](#不能截图)
@@ -48,7 +48,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 
 ## 安装
 
-`deepin-wine-wechat`依赖`Multilib`仓库中的一些32位库，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
+`deepin-wine-wechat`依赖`Multilib`仓库中的一些32位库，Archlinux默认没有开启`Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释并更新本地数据库([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
 
 ```diff
 # If you want to run 32 bit applications on your x86_64 system,
@@ -61,6 +61,10 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 -#Include = /etc/pacman.d/mirrorlist
 +[multilib]
 +Include = /etc/pacman.d/mirrorlist
+```
+保存后执行
+```shell
+sudo pacman -Sy
 ```
 
 :warning: **注意：由于新版微信可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
@@ -151,23 +155,28 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 ## 切换到 `deepin-wine`
 
-:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
+:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
 ### 自动切换(推荐)
 
 对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
-### 从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移
+### 从 `wine`/`deepin-wine 2.x` 迁移
 
-更新到 `deepin-wine-wechat v3.3.5.42-2` 及之后的版本后，依赖变更为 `deepin-wine6-stable`，
+更新到 `deepin-wine-wechat v3.4.0.38-2` 及之后的版本后，依赖变更为 `deepin-wine5`，
 
-如果此时没有其他应用在使用 `wine` 和旧版 `deepin-wine`，就可以放心的卸载旧版 `wine`, `deepin-wine` 及其依赖：
+如果此时没有其他应用在使用 `wine`, `deepin-wine 2.x` 和 `deepin-wine6-stable`，就可以放心的卸载 `wine`, `deepin-wine 2.x` 和 `deepin-wine6-stable` 及其依赖：
 
 ```bash
+# 卸载 deepin-wine 2.x (如果有)
 sudo pacman -S lib32-freetype2 #用原版替换lib32-freetype2-infinality-ultimate
-sudo pacman -Rns deepin-wine xsettingsd # 卸载 deepin-wine 2.x (如果有)
-sudo pacman -Rns deepin-wine5 # 卸载 deepin-wine5 (如果有)
-sudo pacman -Rns wine wine-mono wine-gecko # 卸载 wine 及其依赖(如果有)
+sudo pacman -Rns deepin-wine xsettingsd # 卸载 deepin-wine 2.x
+
+# 卸载 deepin-wine6-stable (如果有)
+sudo pacman -Rns deepin-wine6-stable
+
+# 卸载 wine (如果有)
+sudo pacman -Rns wine wine-mono wine-gecko
 ```
 
 同时，由于 deepin 的打包中不再包含 `deepin-wine-helper`，现改为使用AUR仓库[deepin-wine-helper](https://aur.archlinux.org/packages/deepin-wine-helper)，可以删除之前的 `deepin-wine-helper`：

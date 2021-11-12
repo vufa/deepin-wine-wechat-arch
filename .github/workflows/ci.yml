@@ -24,7 +24,7 @@ jobs:
           before: "sudo pacman -S --noconfirm archlinuxcn-keyring"
           packages: >
             p7zip
-            deepin-wine6-stable
+            deepin-wine5
             deepin-wine-helper
             xorg-xwininfo
             wqy-microhei

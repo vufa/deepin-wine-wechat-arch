@@ -10,7 +10,7 @@
 version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 
 BOTTLENAME="Deepin-WeChat"
-APPVER="3.2.1.154deepin13"
+APPVER="3.2.1.154deepin14"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_VER="3.4.0.38"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"

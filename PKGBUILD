@@ -5,7 +5,7 @@ pkgver=3.4.0.38
 wechat_installer=WeChatSetup
 deepinwechatver=3.2.1.154deepin14
 debpkgname="com.qq.weixin.deepin"
-pkgrel=3
+pkgrel=4
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -15,18 +15,28 @@ optdepends=('noto-fonts-sc: Needed for display some Chinese fonts')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://com-store-packages.uniontech.com"
+_mirror_lib="https://community-packages.deepin.com/deepin/pool/main"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
+  "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
+  "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb"
   "run.sh"
   "reg.patch")
 md5sums=('b48cd3c089b7c2bb7b68aba018b306b1'
          'a9b96f879714fca41f03c84714c965ec'
+         'cf87ad9db0bf279ddf9e5c1dce64a716'
+         '531a3997ea28e8fc0f47e9e136dae332'
          '8f8a42f794a54a6b78fb6d829d1a4894'
          'f3257f8fc9e73ea88b3a46372634f82f')
 
 build() {
   msg "Extracting DPKG package ..."
   mkdir -p "${srcdir}/dpkgdir"
+  ar -x ${debpkgname}_${deepinwechatver}_i386.deb
+  tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
+  ar -x libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb
+  tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
+  ar -x libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
   sed "13s/WeChat.exe/wechat.exe/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
@@ -59,4 +69,7 @@ package() {
   # install -m755 "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/gtkGetFileNameDlg" "${pkgdir}/opt/apps/${debpkgname}/files/"
   md5sum "${srcdir}/files.7z" | awk '{ print $1 }' > "${pkgdir}/opt/apps/${debpkgname}/files/files.md5sum"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/apps/${debpkgname}/files/"
+  msg "Copying deepin lib32 files ..."
+  install -d "${pkgdir}/usr/lib32"
+  cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/{liblber-2.4.so.2,libldap-2.4.so.2,libldap_r-2.4.so.2,libsasl2.so.2} "${pkgdir}/usr/lib32"
 }

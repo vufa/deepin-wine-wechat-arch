@@ -1,5 +1,7 @@
 /com.qq.weixin.deepin*
 /deepin-wine-wechat-*.pkg*
+/libldap*
+/libsasl2*
 /pkg/
 /src/
 /WeChat*

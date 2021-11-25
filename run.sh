@@ -28,6 +28,8 @@ ARCHIVE_FILE_DIR="/opt/apps/$DEB_PACKAGE_NAME/files"
 
 export WINEDLLPATH=/opt/$APPRUN_CMD/lib:/opt/$APPRUN_CMD/lib64
 
+export LD_LIBRARY_PATH=/opt/apps/$DEB_PACKAGE_NAME/files/lib32
+
 export WINEPREDLL="$ARCHIVE_FILE_DIR/dlls"
 
 OpenWinecfg()

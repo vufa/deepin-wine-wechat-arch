@@ -26,7 +26,7 @@ md5sums=('b48cd3c089b7c2bb7b68aba018b306b1'
          'a9b96f879714fca41f03c84714c965ec'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '531a3997ea28e8fc0f47e9e136dae332'
-         '8f8a42f794a54a6b78fb6d829d1a4894'
+         'ad5ef3a00ce862117d7291d35c62c1b3'
          'f3257f8fc9e73ea88b3a46372634f82f')
 
 build() {
@@ -70,6 +70,6 @@ package() {
   md5sum "${srcdir}/files.7z" | awk '{ print $1 }' > "${pkgdir}/opt/apps/${debpkgname}/files/files.md5sum"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/apps/${debpkgname}/files/"
   msg "Copying deepin lib32 files ..."
-  install -d "${pkgdir}/usr/lib32"
-  cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/{liblber-2.4.so.2,libldap-2.4.so.2,libldap_r-2.4.so.2,libsasl2.so.2} "${pkgdir}/usr/lib32"
+  install -d "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
+  cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/{liblber-2.4.so.2,libldap-2.4.so.2,libldap_r-2.4.so.2,libsasl2.so.2} "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
 }

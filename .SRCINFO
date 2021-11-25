@@ -29,7 +29,7 @@ pkgbase = deepin-wine-wechat
 	md5sums = a9b96f879714fca41f03c84714c965ec
 	md5sums = cf87ad9db0bf279ddf9e5c1dce64a716
 	md5sums = 531a3997ea28e8fc0f47e9e136dae332
-	md5sums = 8f8a42f794a54a6b78fb6d829d1a4894
+	md5sums = ad5ef3a00ce862117d7291d35c62c1b3
 	md5sums = f3257f8fc9e73ea88b3a46372634f82f
 
 pkgname = deepin-wine-wechat

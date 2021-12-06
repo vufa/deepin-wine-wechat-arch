@@ -29,6 +29,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
     - [从AUR安装](#从aur安装)
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
+    - [Fedora安装](#Fedora安装)
 - [设置](#设置)
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
@@ -115,6 +116,10 @@ EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 改为修改后的安装路径，否则只有安装后第一次能够运行
 
 :warning: **注意：登录后请在`设置`里关闭微信的`自动更新`，微信启动时会检查更新并加载自动更新程序，由于默认屏蔽了微信的自动更新程序，会导致找不到更新程序而不能启动**
+
+### Fedora安装
+
+基于此仓库进行二次打包分发，Fedora下的rpm包，有需要的同学可以了解一下。[https://github.com/xuthus5/fedora-packager](https://github.com/xuthus5/fedora-packager)
 
 ## 设置
 

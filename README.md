@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.4.0.54-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.4.5.27-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -236,6 +236,7 @@ sudo pacman -Rns deepin-wine-wechat
 <details open>
 <summary>2021</summary>
 
+* 2021-12-11 WeChat-3.4.5.27
 * 2021-12-04 WeChat-3.4.0.54
 * 2021-11-12 WeChat-3.4.0.38 3.2.1.154deepin14
 * 2021-10-21 WeChat-3.4.0.38

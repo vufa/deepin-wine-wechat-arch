@@ -1,7 +1,7 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.4.0.54
+pkgver=3.4.5.27
 wechat_installer=WeChatSetup
 deepinwechatver=3.2.1.154deepin14
 debpkgname="com.qq.weixin.deepin"
@@ -23,10 +23,10 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "reg.patch")
 md5sums=('b48cd3c089b7c2bb7b68aba018b306b1'
-         '1728a97c771775a57288641b39533a48'
+         'b719341339f06726371fa3338a84cc8f'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '531a3997ea28e8fc0f47e9e136dae332'
-         'ed55e3fcb928f4cb62cc4ecd915f7f28'
+         'f29ab2ef1a75b2db671c17fd5f41d04a'
          'f3257f8fc9e73ea88b3a46372634f82f')
 
 build() {

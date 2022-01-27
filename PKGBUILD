@@ -1,7 +1,7 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.4.5.45
+pkgver=3.5.0.46
 wechat_installer=WeChatSetup
 deepinwechatver=3.2.1.154deepin14
 debpkgname="com.qq.weixin.deepin"
@@ -11,7 +11,8 @@ arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
 depends=('p7zip' 'deepin-wine5' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
-optdepends=('noto-fonts-sc: display some Chinese characters')
+optdepends=('noto-fonts-sc: display some Chinese characters'
+            'lib32-nvidia-utils: required for nvidia graphics card')
 conflicts=('deepin-wechat')
 install="deepin-wine-wechat.install"
 _mirror="https://com-store-packages.uniontech.com"
@@ -23,11 +24,11 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "reg.patch")
 md5sums=('b48cd3c089b7c2bb7b68aba018b306b1'
-         '9b301915f6a348dc88bf5568ff87a5e6'
+         'd81ce735e25cf79ac90bdc2c87020d13'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '531a3997ea28e8fc0f47e9e136dae332'
-         '06d525ca6f62c814d65a76299028ca78'
-         'f3257f8fc9e73ea88b3a46372634f82f')
+         'e011858fb5987efa31d3a519c62cb2d6'
+         'a2db11c578fa038120153d790eb8f144')
 
 build() {
   msg "Extracting DPKG package ..."

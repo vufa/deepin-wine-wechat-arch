@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.4.5.45-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.5.0.46-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -207,6 +207,18 @@ sudo pacman -Rns deepin-wine-wechat
 
 参照[设置](#设置)打开 `winecfg` ，在选项卡 `Graphics` 中修改dpi，如 修改为`192`
 
+:bulb: 这一修改会在更新或重装后被重置，如果要在更新后保留dpi设置，可以添加环境变量
+
+> 根据 [deepin-wine-wechat-arch#173](https://github.com/vufa/deepin-wine-wechat-arch/issues/173)，由[abcfy2](https://github.com/abcfy2)提供的方法
+
+编辑 `~/.pam_environment`，添加：
+
+```
+DEEPIN_WINE_SCALE=1.25
+```
+
+`1.25` 为缩放比例，计算方法和其他注意事项参照 [deepin-wine-wechat-arch#173(comment)](https://github.com/vufa/deepin-wine-wechat-arch/issues/173#issuecomment-989944258)
+
 ### GNOME 桌面上的托盘图标
 
 安装 GNOME 插件: [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
@@ -236,6 +248,7 @@ sudo pacman -Rns deepin-wine-wechat
 <details open>
 <summary>2022</summary>
 
+* 2022-01-27 WeChat-3.5.0.46
 * 2022-01-03 WeChat-3.4.5.45
 
 </details>

@@ -1,11 +1,12 @@
 diff -ruN reg_tmp/user.reg reg_tmp_fixed/user.reg
 --- reg_tmp/user.reg	2021-04-28 14:50:30.000000000 +0800
-+++ reg_tmp_fixed/user.reg	2021-06-21 15:11:23.006181124 +0800
-@@ -761,6 +761,7 @@
++++ reg_tmp_fixed/user.reg	2022-01-27 11:07:09.995468048 +0800
+@@ -761,6 +761,8 @@
  "txupd.exe"=""
  "usp10"="native,builtin"
  "wechatupdate.exe"=""
 +"wechatbrowser.exe"=""
++"wechatapp.exe"=""
  
  [Software\\Wine\\Drivers\\winepulse.drv] 1591000018
  #time=1d637ee6a5a1faa

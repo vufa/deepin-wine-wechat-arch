@@ -10,7 +10,7 @@
 version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 
 BOTTLENAME="Deepin-WeChat"
-APPVER="3.2.1.154deepin14"
+APPVER="3.4.0.38deepin4"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_VER="3.5.0.46"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
@@ -19,8 +19,9 @@ WECHAT_INSTALLER="WeChatSetup"
 WECHAT_INSTALLER_PATH="c:/Program Files/Tencent/$WECHAT_INSTALLER-$WECHAT_VER.exe"
 export MIME_TYPE=""
 export DEB_PACKAGE_NAME="com.qq.weixin.deepin"
-export APPRUN_CMD="deepin-wine5"
+export APPRUN_CMD="deepin-wine6-stable"
 DISABLE_ATTACH_FILE_DIALOG=""
+EXPORT_ENVS=""
 
 export SPECIFY_SHELL_DIR=`dirname $START_SHELL_PATH`
 

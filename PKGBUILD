@@ -3,14 +3,14 @@
 pkgname=deepin-wine-wechat
 pkgver=3.5.0.46
 wechat_installer=WeChatSetup
-deepinwechatver=3.2.1.154deepin14
+deepinwechatver=3.4.0.38deepin4
 debpkgname="com.qq.weixin.deepin"
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
-depends=('p7zip' 'deepin-wine5' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+depends=('p7zip' 'deepin-wine6-stable' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 optdepends=('noto-fonts-sc: display some Chinese characters'
             'lib32-nvidia-utils: required for nvidia graphics card')
 conflicts=('deepin-wechat')
@@ -21,14 +21,12 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
   "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb"
-  "run.sh"
-  "reg.patch")
-md5sums=('b48cd3c089b7c2bb7b68aba018b306b1'
+  "run.sh")
+md5sums=('34e5107632fbec5cca41546ab50c209e'
          'd81ce735e25cf79ac90bdc2c87020d13'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '531a3997ea28e8fc0f47e9e136dae332'
-         'e011858fb5987efa31d3a519c62cb2d6'
-         'a2db11c578fa038120153d790eb8f144')
+         'bdd9f1e7102892d4738c98fbede6749e')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -46,8 +44,8 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Cleaning up the original package directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
-  msg "Patching reg files ..."
-  patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
+  #msg "Patching reg files ..."
+  #patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
   msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."

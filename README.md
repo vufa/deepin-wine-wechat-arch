@@ -21,7 +21,7 @@
 
 Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含定制的运行脚本，微信安装包替换为官方最新
 
-:warning: `deepin-wine-wechat` 从 `v3.4.0.38-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
+:warning: `deepin-wine-wechat` 从 `v3.5.0.46-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 
 <!-- TOC -->
 
@@ -36,6 +36,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
     - [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
+    - [中文字体显示为方框/显示模糊](#中文字体显示为方框显示模糊)
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
     - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
@@ -155,7 +156,7 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 ## 切换到 `deepin-wine`
 
-:warning: `deepin-wine-wechat` 从 `v3.3.5.42-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
+:warning: `deepin-wine-wechat` 从 `v3.5.0.46-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-wechat-arch/blob/120d2dedd5dd9d018a14e8ff832f34fe2fcc57a3/README.md)。
 
 ### 自动切换(推荐)
 
@@ -163,17 +164,17 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 ### 从 `wine`/`deepin-wine 2.x` 迁移
 
-更新到 `deepin-wine-wechat v3.4.0.38-2` 及之后的版本后，依赖变更为 `deepin-wine5`，
+更新到 `deepin-wine-wechat v3.5.0.46-2` 及之后的版本后，依赖变更为 `deepin-wine6-stable`，
 
-如果此时没有其他应用在使用 `wine`, `deepin-wine 2.x` 和 `deepin-wine6-stable`，就可以放心的卸载 `wine`, `deepin-wine 2.x` 和 `deepin-wine6-stable` 及其依赖：
+如果此时没有其他应用在使用 `wine`, `deepin-wine 2.x` 和 `deepin-wine5`，就可以放心的卸载 `wine`, `deepin-wine 2.x` 和 `deepin-wine5` 及其依赖：
 
 ```bash
 # 卸载 deepin-wine 2.x (如果有)
 sudo pacman -S lib32-freetype2 #用原版替换lib32-freetype2-infinality-ultimate
 sudo pacman -Rns deepin-wine xsettingsd # 卸载 deepin-wine 2.x
 
-# 卸载 deepin-wine6-stable (如果有)
-sudo pacman -Rns deepin-wine6-stable
+# 卸载 deepin-wine5 (如果有)
+sudo pacman -Rns deepin-wine5
 
 # 卸载 wine (如果有)
 sudo pacman -Rns wine wine-mono wine-gecko
@@ -198,6 +199,12 @@ sudo pacman -Rns deepin-wine-wechat
 微信在本地保存的数据不会被删除，如保存在用户文档下的数据(默认：`~/Documents/WeChat Files`)
 
 ## 常见问题及解决
+
+### 中文字体显示为方框/显示模糊
+
+`deepin-wine-wechat` 的字体文件夹在：`$HOME/.deepinwine/Deepin-WeChat/drive_c/windows/Fonts`
+
+经测试将 `微软雅黑` 伪装成 `宋体(simsun)` 的显示效果最好，具体可以参照 [bbs.deepin.org](https://bbs.deepin.org/zh/post/213530?offset=0&postId=1269543)，将 `fake_simsun.ttc` 放到字体文件夹
 
 ### 不能截图
 
@@ -248,6 +255,7 @@ DEEPIN_WINE_SCALE=1.25
 <details open>
 <summary>2022</summary>
 
+* 2022-02-03 WeChat-3.5.0.46 3.4.0.38deepin4
 * 2022-01-27 WeChat-3.5.0.46
 * 2022-01-03 WeChat-3.4.5.45
 

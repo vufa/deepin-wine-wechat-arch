@@ -24,17 +24,18 @@ jobs:
           before: "sudo pacman -S --noconfirm archlinuxcn-keyring"
           packages: >
             p7zip
-            deepin-wine5
+            deepin-wine6-stable
             deepin-wine-helper
             xorg-xwininfo
             wqy-microhei
-            noto-fonts-sc
             lib32-alsa-lib
             lib32-alsa-plugins
             lib32-libpulse
             lib32-openal
             lib32-mpg123
             lib32-libldap
+            noto-fonts-sc
+            lib32-nvidia-utils
           scripts: "makepkg && ./gen.sh -m"
       - name: Release
         uses: softprops/action-gh-release@v1

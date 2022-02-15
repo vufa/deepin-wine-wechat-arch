@@ -15,6 +15,7 @@ WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_FONTS="$WINEPREFIX/drive_c/windows/Fonts"
 WECHAT_VER="3.5.0.46"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
+EXEC_FILE="$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
 WECHAT_INSTALLER="WeChatSetup"
 WECHAT_INSTALLER_PATH="c:/Program Files/Tencent/$WECHAT_INSTALLER-$WECHAT_VER.exe"
@@ -75,7 +76,7 @@ Run()
             DeployApp
         else
             # missing exec file
-            if [ ! -d "$EXEC_PATH" ];then
+            if [ ! -f "$EXEC_FILE" ];then
                 DeployApp
             fi
 

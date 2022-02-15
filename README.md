@@ -37,6 +37,7 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
     - [中文字体显示为方框/显示模糊](#中文字体显示为方框显示模糊)
+    - [小程序中字体显示为方框](#小程序中字体显示为方框)
     - [不能截图](#不能截图)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
     - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
@@ -205,6 +206,19 @@ sudo pacman -Rns deepin-wine-wechat
 `deepin-wine-wechat` 的字体文件夹在：`$HOME/.deepinwine/Deepin-WeChat/drive_c/windows/Fonts`
 
 经测试将 `微软雅黑` 伪装成 `宋体(simsun)` 的显示效果最好，具体可以参照 [bbs.deepin.org](https://bbs.deepin.org/zh/post/213530?offset=0&postId=1269543)，将 `fake_simsun.ttc` 放到字体文件夹
+
+### 小程序中字体显示为方框
+
+> 参照 [deepin-wine-wechat-arch#186](https://github.com/vufa/deepin-wine-wechat-arch/issues/186)
+
+可以安装 `deepin-wine-wechat` 的可选依赖 [noto-fonts-sc](https://aur.archlinux.org/packages/noto-fonts-sc/)(只包含 `noto-fonts-cjk` 中的简体中文字体)：
+
+```bash
+yay -S noto-fonts-sc
+```
+
+或安装 `noto-fonts-cjk` 并参照[ArchWiki](https://wiki.archlinux.org/title/Localization_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Simplified_Chinese_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E4.BF.AE.E6.AD.A3.E7.AE.80.E4.BD.93.E4.B8.AD.E6.96.87.E6.98.BE.E7.A4.BA.E4.B8.BA.E5.BC.82.E4.BD.93.EF.BC.88.E6.97.A5.E6.96.87.EF.BC.89.E5.AD.97.E5.BD.A2)进行配置
+
 
 ### 不能截图
 

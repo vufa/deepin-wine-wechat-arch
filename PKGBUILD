@@ -5,7 +5,7 @@ pkgver=3.5.0.46
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin4
 debpkgname="com.qq.weixin.deepin"
-pkgrel=2
+pkgrel=3
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -22,11 +22,11 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
   "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb"
   "run.sh")
-md5sums=('34e5107632fbec5cca41546ab50c209e'
+md5sums=('940b59d57536a1e43bc9fc6f61d675ca'
          'd81ce735e25cf79ac90bdc2c87020d13'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '531a3997ea28e8fc0f47e9e136dae332'
-         'bdd9f1e7102892d4738c98fbede6749e')
+         '407a69a6359b429e74c503ff9b389c7c')
 
 build() {
   msg "Extracting DPKG package ..."

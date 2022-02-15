@@ -39,6 +39,27 @@ OpenWinecfg()
     env WINEPREFIX=$WINEPREFIX $APPRUN_CMD winecfg
 }
 
+DeployApp()
+{
+    # backup fonts
+    if [ -d "$WECHAT_FONTS" ];then
+        mkdir -p $HOME/.deepinwine/.wechat_tmp
+        cp $WECHAT_FONTS/* $HOME/.deepinwine/.wechat_tmp/
+    fi
+
+    # re-deploy bottle
+    rm -rf "$WINEPREFIX"
+    # run installer
+    env WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$WECHAT_INSTALLER_PATH" "$@"
+
+    # restore fonts
+    if [ -d "$HOME/.deepinwine/.wechat_tmp" ];then
+        cp -n $HOME/.deepinwine/.wechat_tmp/* $WECHAT_FONTS/
+        rm -rf "$HOME/.deepinwine/.wechat_tmp"
+    fi
+    touch $WINEPREFIX/reinstalled
+}
+
 Run()
 {
     if [ -z "$DISABLE_ATTACH_FILE_DIALOG" ];then
@@ -51,22 +72,13 @@ Run()
 
     if [ -n "$EXEC_PATH" ];then
         if [ ! -f "$WINEPREFIX/reinstalled" ];then
-            # backup fonts
-            if [ -d "$WECHAT_FONTS" ];then
-                mkdir $HOME/.deepinwine/.wechat_tmp
-                cp "$WECHAT_FONTS/*" "$HOME/.deepinwine/.wechat_tmp/"
-            fi
-
-            # run installer
-            env WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$WECHAT_INSTALLER_PATH" "$@"
-
-            # restore fonts
-            if [ -d "$HOME/.deepinwine/.wechat_tmp" ];then
-                cp -n "$HOME/.deepinwine/.wechat_tmp/*" "$WECHAT_FONTS/"
-                rm -rf "$HOME/.deepinwine/.wechat_tmp"
-            fi
-            touch $WINEPREFIX/reinstalled
+            DeployApp
         else
+            # missing exec file
+            if [ ! -d "$EXEC_PATH" ];then
+                DeployApp
+            fi
+
             if [ -z "${EXEC_PATH##*.lnk*}" ];then
                 $START_SHELL_PATH $BOTTLENAME $APPVER "C:/windows/command/start.exe" "/Unix" "$EXEC_PATH" "$@"
             else

@@ -12,6 +12,7 @@ version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; 
 BOTTLENAME="Deepin-WeChat"
 APPVER="3.4.0.38deepin4"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
+WECHAT_FONTS="$WINEPREFIX/drive_c/windows/Fonts"
 WECHAT_VER="3.5.0.46"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
@@ -44,10 +45,26 @@ Run()
         export ATTACH_FILE_DIALOG=1
     fi
 
+    if [ -n "$EXPORT_ENVS" ];then
+        export $EXPORT_ENVS
+    fi
+
     if [ -n "$EXEC_PATH" ];then
         if [ ! -f "$WINEPREFIX/reinstalled" ];then
+            # backup fonts
+            if [ -d "$WECHAT_FONTS" ];then
+                mkdir $HOME/.deepinwine/.wechat_tmp
+                cp "$WECHAT_FONTS/*" "$HOME/.deepinwine/.wechat_tmp/"
+            fi
+
             # run installer
             env WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$WECHAT_INSTALLER_PATH" "$@"
+
+            # restore fonts
+            if [ -d "$HOME/.deepinwine/.wechat_tmp" ];then
+                cp -n "$HOME/.deepinwine/.wechat_tmp/*" "$WECHAT_FONTS/"
+                rm -rf "$HOME/.deepinwine/.wechat_tmp"
+            fi
             touch $WINEPREFIX/reinstalled
         else
             if [ -z "${EXEC_PATH##*.lnk*}" ];then

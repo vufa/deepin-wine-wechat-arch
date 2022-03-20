@@ -1,11 +1,11 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.5.0.46
+pkgver=3.6.0.18
 wechat_installer=WeChatSetup
-deepinwechatver=3.4.0.38deepin4
+deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
-pkgrel=3
+pkgrel=1
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -20,13 +20,13 @@ _mirror_lib="https://community-packages.deepin.com/deepin/pool/main"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinwechatver}_i386.deb"
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
-  "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb"
+  "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27.1-1+dde_i386.deb"
   "run.sh")
-md5sums=('940b59d57536a1e43bc9fc6f61d675ca'
-         'd81ce735e25cf79ac90bdc2c87020d13'
+md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
+         'ec197a3d4300b09505d8cd8f1c18baf4'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
-         '531a3997ea28e8fc0f47e9e136dae332'
-         '0a40eeb0da00cbb98820089de9efbd04')
+         '89b10711889f52ab0a386f37b4eb3212'
+         '8e6efbeafa440e3614518e4260b974e5')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -35,7 +35,7 @@ build() {
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   ar -x libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
-  ar -x libsasl2-2_2.1.27+dfsg-1+deb10u1_i386.deb
+  ar -x libsasl2-2_2.1.27.1-1+dde_i386.deb
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
   sed "13s/WeChat.exe/wechat.exe/" -i "${srcdir}/dpkgdir/opt/apps/${debpkgname}/entries/applications/${debpkgname}.desktop"
@@ -70,5 +70,6 @@ package() {
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/apps/${debpkgname}/files/"
   msg "Copying deepin lib32 files ..."
   install -d "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
-  cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/{liblber-2.4.so.2,libldap-2.4.so.2,libldap_r-2.4.so.2,libsasl2.so.2} "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
+  # cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/{liblber-2.4.so.2,libldap-2.4.so.2,libldap_r-2.4.so.2,libsasl2.so.2} "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
+  cp ${srcdir}/dpkgdir/usr/lib/i386-linux-gnu/* "${pkgdir}/opt/apps/${debpkgname}/files/lib32"
 }

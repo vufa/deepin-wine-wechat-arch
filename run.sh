@@ -59,6 +59,7 @@ DeployApp()
         rm -rf "$HOME/.deepinwine/.wechat_tmp"
     fi
     touch $WINEPREFIX/reinstalled
+    cat /opt/apps/$DEB_PACKAGE_NAME/files/files.md5sum > $WINEPREFIX/PACKAGE_VERSION
 }
 
 Run()

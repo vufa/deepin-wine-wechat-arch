@@ -26,7 +26,7 @@ md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
          'ec197a3d4300b09505d8cd8f1c18baf4'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '8e6efbeafa440e3614518e4260b974e5')
+         '811edbd0bbb81a23f6ded7a4a581bdbb')
 
 build() {
   msg "Extracting DPKG package ..."

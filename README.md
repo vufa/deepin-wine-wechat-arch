@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.7.0.29-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.7.0.30-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -269,6 +269,7 @@ DEEPIN_WINE_SCALE=1.25
 <details open>
 <summary>2022</summary>
 
+* 2022-06-09 WeChat-3.7.0.30
 * 2022-06-02 WeChat-3.7.0.29
 * 2022-03-20 WeChat-3.6.0.18 3.4.0.38deepin6
 * 2022-02-03 WeChat-3.5.0.46 3.4.0.38deepin4

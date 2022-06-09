@@ -1,7 +1,7 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.7.0.29
+pkgver=3.7.0.30
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
@@ -23,10 +23,10 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27.1-1+dde_i386.deb"
   "run.sh")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         '12dfdf74fa1db8c436da301d0d732685'
+         'f051ff988f36b1c9e2ba3b98cebbc7b6'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '337171dd7c9d63654388752e7707385e')
+         'ee2e2e42860b29eb74ec893e8cdfab60')
 
 build() {
   msg "Extracting DPKG package ..."

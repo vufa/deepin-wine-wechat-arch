@@ -1,7 +1,7 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.7.0.30
+pkgver=3.7.5.23
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
@@ -21,12 +21,14 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "${wechat_installer}-${pkgver}.exe::https://dldir1.qq.com/weixin/Windows/${wechat_installer}.exe"
   "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
   "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27.1-1+dde_i386.deb"
-  "run.sh")
+  "run.sh"
+  "reg.patch")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         'f051ff988f36b1c9e2ba3b98cebbc7b6'
+         '86851da540577bb4e994cfc076a5776a'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         'ee2e2e42860b29eb74ec893e8cdfab60')
+         '464e8be12ba7037671f648f0b7839b12'
+         '05b05416ef1fa4e1baaf64736e15a057')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -44,8 +46,8 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Cleaning up the original package directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
-  #msg "Patching reg files ..."
-  #patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
+  msg "Patching reg files ..."
+  patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
   msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."

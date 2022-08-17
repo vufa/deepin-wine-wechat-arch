@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.7.5.23-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.7.5.31-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -128,32 +128,23 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 ## 兼容性记录
 
-|   微信    |  wine   |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
-| :-------: | :-----: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
-| 3.3.0.115 |  6.12   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
-| 3.3.0.93  |  6.11   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
-| 3.2.1.154 |   6.6   |            | 截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
-| 3.2.1.151 |   6.6   |            | 截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
-| 3.2.1.141 |   6.6   |            |                                                              |  5.0.16-1   |  支持  |                                                              |
-| 3.2.1.127 |   6.5   |    部分    | 群聊闪退&截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
-| 3.1.0.72  |   6.0   |    部分    | 截图功能不可用：[#73](https://github.com/vufa/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
-| 3.1.0.41  |  5.22   |    部分    | 截图功能不可用：[#73](https://github.com/vufa/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
-| 3.0.0.57  |  5.22   | **不支持** | 微信安装程序不能启动：[#92](https://github.com/vufa/deepin-wine-wechat-arch/issues/92) |  5.0.16-1   |  支持  |                                                              |
-| 3.0.0.57  |  5.19   |    支持    |                                                              |  2.18_24-3  |  支持  |                                                              |
-| 2.9.5.56  |  5.13   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |  2.18_24-3  |  部分  | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |
-| 2.9.5.41  |  5.11   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |
-| 2.9.0.123 |   5.7   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |
-| 2.9.0.114 |   5.6   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.9.0.112 |   5.5   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.133 |   5.3   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.112 | 5.0-rc4 |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.8.0.106 |  4.19   |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |             |        |                                                              |
-| 2.7.1.88  |  4.19+  |    支持    |                                                              |             |        |                                                              |
-| 2.7.1.88  |  4.18   |    部分    |                      不能使用中文输入法                      |             |        |                                                              |
-| 2.7.1.85  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  |   ?    |                                                              |
-| 2.7.1.82  |  4.18   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
-| 2.7.1.82  |  4.17   |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
-| 2.6.8.65  |  4.16   |    支持    |                                                              |  2.18_18-2  |  支持  |                                                              |
+:warning: **注意：所有版本的摄像头均不可用**
+
+
+|      微信版本       |   wine    |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
+| :-----------------: | :-------: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
+|      3.7.0.30~      |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 截图和表情包不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
+|  3.5.0.46~3.7.0.30  |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 小程序和公众号可用，截图([#192](https://github.com/vufa/deepin-wine-wechat-arch/issues/192))和表情包不可用([#177](https://github.com/vufa/deepin-wine-wechat-arch/issues/188)) |
+|  3.3.0.93~3.5.0.46  |     \     |     \      |                              \                               |  5.0.16-1   |  支持  |                                                              |
+| 3.2.1.141~3.2.1.154 |    6.6    |            | 截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
+|      3.2.1.127      |    6.5    |    部分    | 群聊闪退&截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
+|  3.1.0.41~3.1.0.72  | 5.22~6.0  |    部分    | 截图功能不可用：[#73](https://github.com/vufa/deepin-wine-wechat-arch/issues/73) |  5.0.16-1   |  支持  |                                                              |
+|      3.0.0.57       |   5.22    | **不支持** | 微信安装程序不能启动：[#92](https://github.com/vufa/deepin-wine-wechat-arch/issues/92) |  5.0.16-1   |  支持  |                                                              |
+|      3.0.0.57       |   5.19    |    支持    |                                                              |  2.18_24-3  |  支持  |                                                              |
+| 2.8.0.106~2.9.5.56  | 4.19~5.13 |    部分    | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |  2.18_22-3  |  部分  | 发送图片有问题: [#42](https://github.com/vufa/deepin-wine-wechat-arch/issues/42) |
+|  2.7.1.82~2.7.1.88  |   4.19+   |    支持    |                                                              |             |        |                                                              |
+|  2.7.1.82~2.7.1.88  | 4.17~4.18 |    部分    |                      不能使用中文输入法                      |  2.18_18-2  | 不支持 |                             闪退                             |
+|      2.6.8.65       |   4.16    |    支持    |                                                              |  2.18_18-2  |  支持  |                                                              |
 
 ## 切换到 `deepin-wine`
 
@@ -269,6 +260,7 @@ DEEPIN_WINE_SCALE=1.25
 <details open>
 <summary>2022</summary>
 
+* 2022-08-17 WeChat-3.7.5.31
 * 2022-07-21 WeChat-3.7.5.23
 * 2022-06-09 WeChat-3.7.0.30
 * 2022-06-02 WeChat-3.7.0.29

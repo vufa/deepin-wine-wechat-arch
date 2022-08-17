@@ -1,7 +1,7 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.7.5.23
+pkgver=3.7.5.31
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
@@ -24,10 +24,10 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "reg.patch")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         '86851da540577bb4e994cfc076a5776a'
+         '930141b82ed317250274c3aeb3750ae2'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '464e8be12ba7037671f648f0b7839b12'
+         '543ccf3fdb5e00a2fde68971294d8265'
          '05b05416ef1fa4e1baaf64736e15a057')
 
 build() {
@@ -52,6 +52,9 @@ build() {
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."
   install -m644 "${srcdir}/${wechat_installer}-${pkgver}.exe" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"
+  msg "Creating 'XPlugin/Plugins/XWeb' to forbid wechat browser creating crash logs ..."
+  mkdir -p "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/"
+  touch "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/XWeb"
   #find -L "${srcdir}/deepinwechatdir/dosdevices" -maxdepth 1 -type l -delete
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepinwechatdir/*"

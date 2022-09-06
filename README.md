@@ -1,4 +1,4 @@
-在Archlinux及衍生发行版上运行微信(WeChat)
+在Archlinux及衍生发行版上运行微信(WeChat) <!-- omit in toc -->
 ========
 
 <p align="center">
@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.7.6.29-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.7.6.44-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -23,30 +23,27 @@ Deepin打包的微信容器(`com.qq.weixin.deepin`)移植到Archlinux，包含�
 
 :warning: `deepin-wine-wechat` 从 `v3.5.0.46-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 
-<!-- TOC -->
-
 - [安装](#安装)
-    - [从AUR安装](#从aur安装)
-    - [用安装包安装](#用安装包安装)
-    - [本地打包安装](#本地打包安装)
+  - [从AUR安装](#从aur安装)
+  - [用安装包安装](#用安装包安装)
+  - [本地打包安装](#本地打包安装)
 - [设置](#设置)
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
-    - [自动切换(推荐)](#自动切换推荐)
-    - [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
+  - [自动切换(推荐)](#自动切换推荐)
+  - [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
-    - [中文字体显示为方框/显示模糊](#中文字体显示为方框显示模糊)
-    - [小程序中字体显示为方框](#小程序中字体显示为方框)
-    - [不能截图](#不能截图)
-    - [高分辨率屏幕支持](#高分辨率屏幕支持)
-    - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
-    - [消除阴影边框](#消除阴影边框)
-    - [唤出已运行的WeChat窗口](#唤出已运行的wechat窗口)
+  - [中文字体显示为方框/显示模糊](#中文字体显示为方框显示模糊)
+  - [小程序中字体显示为方框](#小程序中字体显示为方框)
+  - [不能截图](#不能截图)
+  - [高分辨率屏幕支持](#高分辨率屏幕支持)
+  - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
+  - [消除阴影边框](#消除阴影边框)
+  - [唤出已运行的WeChat窗口](#唤出已运行的wechat窗口)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
-<!-- /TOC -->
 
 ## 安装
 
@@ -260,6 +257,7 @@ DEEPIN_WINE_SCALE=1.25
 <details open>
 <summary>2022</summary>
 
+* 2022-09-06 WeChat-3.7.6.44
 * 2022-08-20 WeChat-3.7.6.29
 * 2022-08-20 WeChat-3.7.6.24
 * 2022-08-17 WeChat-3.7.5.31

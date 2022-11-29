@@ -238,15 +238,13 @@ DEEPIN_WINE_SCALE=1.25
 
 ### 唤出已运行的WeChat窗口
 
-> 根据 [deepin-wine-wechat-arch#96](https://github.com/vufa/deepin-wine-wechat-arch/issues/96)，由[szy132](https://github.com/szy132)提供的方法
-
 运行命令：
 
 ```bash
-/opt/deepinwine/tools/sendkeys.sh w wechat 4
+env WINEPREDLL=/opt/apps/com.qq.weixin.deepin/files/dlls WINEDLLPATH=/opt/deepin-wine6-stable/lib:/opt/deepin-wine6-stable/lib64 WINEPREFIX=/home/hyleon/.deepinwine/Deepin-WeChat deepin-wine6-stable /opt/deepinwine/tools/sendkeys.exe w
 ```
 
-可以参考 [deepin-wine-wechat-arch#96](https://github.com/vufa/deepin-wine-wechat-arch/issues/96) 将该命令添加到桌面环境的全局快捷键中，方便使用
+可以参考 [deepin-wine-wechat-arch#263](https://github.com/vufa/deepin-wine-wechat-arch/issues/263) 将该命令存入脚本并添加到全局快捷键中，方便使用
 
 ## 感谢
 

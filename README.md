@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.7.6.44-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.8.0.41-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -130,7 +130,8 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 |      微信版本       |   wine    |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-----------------: | :-------: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
-|      3.7.0.30~      |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 截图和表情包不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
+|      3.8.0.41~      |     \     |     \      |                              \                               | 6.0.0.39-1  |  部分  | 截图不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
+|  3.7.0.30~3.7.6.44  |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 截图和表情包不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
 |  3.5.0.46~3.7.0.30  |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 小程序和公众号可用，截图([#192](https://github.com/vufa/deepin-wine-wechat-arch/issues/192))和表情包不可用([#177](https://github.com/vufa/deepin-wine-wechat-arch/issues/188)) |
 |  3.3.0.93~3.5.0.46  |     \     |     \      |                              \                               |  5.0.16-1   |  支持  |                                                              |
 | 3.2.1.141~3.2.1.154 |    6.6    |            | 截图功能不可用：[#87](https://github.com/vufa/deepin-wine-wechat-arch/issues/87) |  5.0.16-1   |  支持  |                                                              |
@@ -241,7 +242,7 @@ DEEPIN_WINE_SCALE=1.25
 运行命令：
 
 ```bash
-env WINEPREDLL=/opt/apps/com.qq.weixin.deepin/files/dlls WINEDLLPATH=/opt/deepin-wine6-stable/lib:/opt/deepin-wine6-stable/lib64 WINEPREFIX=/home/hyleon/.deepinwine/Deepin-WeChat deepin-wine6-stable /opt/deepinwine/tools/sendkeys.exe w
+/opt/apps/com.qq.weixin.deepin/files/run.sh -w
 ```
 
 可以参考 [deepin-wine-wechat-arch#263](https://github.com/vufa/deepin-wine-wechat-arch/issues/263) 将该命令存入脚本并添加到全局快捷键中，方便使用
@@ -255,6 +256,7 @@ env WINEPREDLL=/opt/apps/com.qq.weixin.deepin/files/dlls WINEDLLPATH=/opt/deepin
 <details open>
 <summary>2022</summary>
 
+* 2022-11-30 WeChat-3.8.0.41
 * 2022-09-06 WeChat-3.7.6.44
 * 2022-08-20 WeChat-3.7.6.29
 * 2022-08-20 WeChat-3.7.6.24

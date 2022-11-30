@@ -1,14 +1,14 @@
 pkgbase = deepin-wine-wechat
 	pkgdesc = Tencent WeChat on Deepin Wine(com.qq.weixin.deepin) For Archlinux
-	pkgver = 3.7.6.44
+	pkgver = 3.8.0.41
 	pkgrel = 1
 	url = https://weixin.qq.com/
 	install = deepin-wine-wechat.install
 	arch = x86_64
 	license = custom
 	depends = p7zip
-	depends = deepin-wine6-stable>=6.0.0.24-1
-	depends = deepin-wine-helper>=5.1.39_1-1
+	depends = deepin-wine6-stable>=6.0.0.39-1
+	depends = deepin-wine-helper>=5.1.43_1-1
 	depends = xorg-xwininfo
 	depends = wqy-microhei
 	depends = lib32-alsa-lib
@@ -21,16 +21,16 @@ pkgbase = deepin-wine-wechat
 	optdepends = lib32-nvidia-utils: required for nvidia graphics card
 	conflicts = deepin-wechat
 	source = https://com-store-packages.uniontech.com/appstore/pool/appstore/c/com.qq.weixin.deepin/com.qq.weixin.deepin_3.4.0.38deepin6_i386.deb
-	source = WeChatSetup-3.7.6.44.exe::https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
+	source = WeChatSetup-3.8.0.41.exe::https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
 	source = https://community-packages.deepin.com/deepin/pool/main/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb
 	source = https://community-packages.deepin.com/deepin/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.27.1-1+dde_i386.deb
 	source = run.sh
 	source = reg.patch
 	md5sums = 6c4edb108a0593bab7a556a6c9e8a012
-	md5sums = 27e8373a038d2b240ad440b0f9ffc19b
+	md5sums = d841406c6a892707904029953266ad41
 	md5sums = cf87ad9db0bf279ddf9e5c1dce64a716
 	md5sums = 89b10711889f52ab0a386f37b4eb3212
-	md5sums = 861f2e5c7eb05c50aab8da8d51a307af
+	md5sums = 18dd3e7fca1533923d87cdb0a1b29bbd
 	md5sums = 05b05416ef1fa4e1baaf64736e15a057
 
 pkgname = deepin-wine-wechat

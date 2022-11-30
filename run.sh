@@ -13,7 +13,7 @@ BOTTLENAME="Deepin-WeChat"
 APPVER="3.4.0.38deepin6"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_FONTS="$WINEPREFIX/drive_c/windows/Fonts"
-WECHAT_VER="3.7.6.44"
+WECHAT_VER="3.8.0.41"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 EXEC_FILE="$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
@@ -74,6 +74,13 @@ DeployApp()
     cat /opt/apps/$DEB_PACKAGE_NAME/files/files.md5sum > $WINEPREFIX/PACKAGE_VERSION
 }
 
+WakeApp()
+{
+    env WINEPREDLL="$ARCHIVE_FILE_DIR/dlls" \
+    WINEDLLPATH=/opt/$APPRUN_CMD/lib:/opt/$APPRUN_CMD/lib64 \
+    WINEPREFIX=$WINEPREFIX $APPRUN_CMD /opt/deepinwine/tools/sendkeys.exe w
+}
+
 Run()
 {
     if [ -z "$DISABLE_ATTACH_FILE_DIALOG" ];then
@@ -111,8 +118,9 @@ Run()
 HelpApp()
 {
 	echo " Extra Commands:"
-	echo " winecfg        Open winecfg"
-	echo " -h/--help      Show program help info"
+	echo " winecfg          Open winecfg"
+	echo " -w/--wake        Wake up background program"
+	echo " -h/--help        Show program help info"
 }
 
 if [ -z $1 ]; then
@@ -122,6 +130,9 @@ fi
 case $1 in
 	"winecfg")
 		OpenWinecfg
+		;;
+    "-w" | "--wake")
+		WakeApp
 		;;
 	"-h" | "--help")
 		HelpApp

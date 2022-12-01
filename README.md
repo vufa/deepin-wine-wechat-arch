@@ -221,7 +221,7 @@ yay -S noto-fonts-sc
 
 > 根据 [deepin-wine-wechat-arch#173](https://github.com/vufa/deepin-wine-wechat-arch/issues/173)，由[abcfy2](https://github.com/abcfy2)提供的方法
 
-编辑 `~/.pam_environment`，添加：
+编辑 `/etc/environment`，添加：
 
 ```
 DEEPIN_WINE_SCALE=1.25
@@ -245,7 +245,7 @@ DEEPIN_WINE_SCALE=1.25
 /opt/apps/com.qq.weixin.deepin/files/run.sh -w
 ```
 
-可以参考 [deepin-wine-wechat-arch#263](https://github.com/vufa/deepin-wine-wechat-arch/issues/263) 将该命令存入脚本并添加到全局快捷键中，方便使用
+可以参考 [deepin-wine-wechat-arch#96](https://github.com/vufa/deepin-wine-wechat-arch/issues/96) 和 [deepin-wine-wechat-arch#263](https://github.com/vufa/deepin-wine-wechat-arch/issues/263) 将该命令存入脚本并添加到全局快捷键中，方便使用
 
 ## 感谢
 

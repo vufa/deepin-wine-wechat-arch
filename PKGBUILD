@@ -5,7 +5,7 @@ pkgver=3.8.0.41
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -27,7 +27,7 @@ md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
          'd841406c6a892707904029953266ad41'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '8affc899887c042937a623406346871c'
+         '8ff0cb8e9c126641593ee8d31b94042b'
          '05b05416ef1fa4e1baaf64736e15a057')
 
 build() {
@@ -46,8 +46,8 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/files.7z" -o"${srcdir}/deepinwechatdir"
   msg "Cleaning up the original package directory ..."
   rm -r "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/WeChat"
-  msg "Patching reg files ..."
-  patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
+  #msg "Patching reg files ..."
+  #patch -p1 -d "${srcdir}/deepinwechatdir/" < "${srcdir}/reg.patch"
   msg "Creating font file link ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."

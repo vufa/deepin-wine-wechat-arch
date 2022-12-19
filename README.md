@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/vufa/deepin-wine-wechat-arch/actions">
-    <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-wechat-arch/CI/action?logo=github&style=flat-square">
+    <img src="https://img.shields.io/github/actions/workflow/status/vufa/deepin-wine-wechat-arch/ci.yml?branch=action&logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
     <img src="https://img.shields.io/badge/WeChat-3.8.0.41-blue?style=flat-square&logo=wechat" alt="WeChat Version">

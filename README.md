@@ -269,7 +269,7 @@ get_tray_window()
 sudo pacman -S dbus-python
 ```
 
-再将脚本内容修改成如下代码：
+再将脚本`/opt/deepinwine/tools/get_tray_window`内容修改成如下代码：
 
 ```python
 #!/usr/bin/env python

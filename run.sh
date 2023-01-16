@@ -7,13 +7,11 @@
 
 #               Vufa <countstarlight@gmail.com>
 
-version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
-
 BOTTLENAME="Deepin-WeChat"
 APPVER="3.4.0.38deepin6"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_FONTS="$WINEPREFIX/drive_c/windows/Fonts"
-WECHAT_VER="3.8.0.41"
+WECHAT_VER="3.8.1.26"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 EXEC_FILE="$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"

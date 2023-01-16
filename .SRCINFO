@@ -7,8 +7,9 @@ pkgbase = deepin-wine-wechat
 	arch = x86_64
 	license = custom
 	depends = p7zip
+	depends = lib32-udis86-git
 	depends = deepin-wine6-stable>=6.0.0.39-1
-	depends = deepin-wine-helper>=5.1.43_1-1
+	depends = deepin-wine-helper>=5.1.45_1-1
 	depends = xorg-xwininfo
 	depends = wqy-microhei
 	depends = lib32-alsa-lib

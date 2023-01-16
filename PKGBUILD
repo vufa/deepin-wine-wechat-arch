@@ -10,7 +10,7 @@ pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
-depends=('p7zip' 'deepin-wine6-stable>=6.0.0.39-1' 'deepin-wine-helper>=5.1.43_1-1' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+depends=('p7zip' 'lib32-udis86-git' 'deepin-wine6-stable>=6.0.0.39-1' 'deepin-wine-helper>=5.1.45_1-1' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 optdepends=('noto-fonts-sc: display some Chinese characters'
             'lib32-nvidia-utils: required for nvidia graphics card')
 conflicts=('deepin-wechat')

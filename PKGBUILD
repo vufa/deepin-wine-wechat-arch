@@ -1,11 +1,11 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.8.0.41
+pkgver=3.8.1.26
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
-pkgrel=2
+pkgrel=1
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -24,10 +24,10 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "run.sh"
   "reg.patch")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         'd841406c6a892707904029953266ad41'
+         '4f374b1a0961dc7ca734db90ebc5e635'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '8ff0cb8e9c126641593ee8d31b94042b'
+         '1a98e0a0ba0d740115e9e62523104011'
          '05b05416ef1fa4e1baaf64736e15a057')
 
 build() {

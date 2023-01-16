@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/github/actions/workflow/status/vufa/deepin-wine-wechat-arch/ci.yml?branch=action&logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.8.0.41-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.8.1.26-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -23,7 +23,7 @@ Deepin 打包的微信容器(`com.qq.weixin.deepin`)移植到 Archlinux，包含
 :warning: `deepin-wine-wechat` 从 `v3.5.0.46-2` 开始，默认使用 AUR 仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 
 - [安装](#安装)
-  - [从 AUR 安装](#从aur安装)
+  - [从 AUR 安装](#从-aur-安装)
   - [用安装包安装](#用安装包安装)
   - [本地打包安装](#本地打包安装)
 - [设置](#设置)
@@ -40,6 +40,8 @@ Deepin 打包的微信容器(`com.qq.weixin.deepin`)移植到 Archlinux，包含
   - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
   - [消除阴影边框](#消除阴影边框)
   - [唤出已运行的 WeChat 窗口](#唤出已运行的-wechat-窗口)
+    - [旧方法：](#旧方法)
+    - [新方法：](#新方法)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
@@ -303,6 +305,13 @@ if __name__ == "__main__":
 ## 更新日志
 
 <details open>
+<summary>2023</summary>
+
+- 2023-01-16 WeChat-3.8.1.26
+
+</details>
+
+<details>
 <summary>2022</summary>
 
 - 2022-11-30 WeChat-3.8.0.41

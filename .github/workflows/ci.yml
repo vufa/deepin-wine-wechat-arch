@@ -21,9 +21,10 @@ jobs:
         with:
           repos: >
             archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-          before: "sudo pacman -S --noconfirm archlinuxcn-keyring"
+          before: "sudo pacman -S --noconfirm archlinuxcn-keyring && curl https://github.com/canihavesomecoffee.gpg | gpg --import"
           packages: >
             p7zip
+            lib32-udis86-git
             deepin-wine6-stable
             deepin-wine-helper
             xorg-xwininfo

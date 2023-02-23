@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/github/actions/workflow/status/vufa/deepin-wine-wechat-arch/ci.yml?branch=action&logo=github&style=flat-square">
   </a>
   <a href="https://pc.weixin.qq.com/">
-    <img src="https://img.shields.io/badge/WeChat-3.8.1.26-blue?style=flat-square&logo=wechat" alt="WeChat Version">
+    <img src="https://img.shields.io/badge/WeChat-3.9.0.28-blue?style=flat-square&logo=wechat" alt="WeChat Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-wechat/">
     <img src="https://img.shields.io/aur/version/deepin-wine-wechat?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -308,6 +308,7 @@ if __name__ == "__main__":
 <details open>
 <summary>2023</summary>
 
+- 2023-02-23 WeChat-3.9.0.28
 - 2023-01-16 WeChat-3.8.1.26
 
 </details>

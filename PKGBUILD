@@ -1,16 +1,16 @@
 # Maintainer: Vufa <countstarlight@gmail.com>
 
 pkgname=deepin-wine-wechat
-pkgver=3.8.1.26
+pkgver=3.9.0.28
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
 license=('custom')
-depends=('p7zip' 'deepin-wine6-stable>=6.0.0.39-1' 'deepin-wine-helper>=5.1.43_1-1' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
+depends=('p7zip' 'lib32-udis86-git' 'deepin-wine6-stable>=6.0.0.42-1' 'deepin-wine-helper>=5.1.45_1-1' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-libldap')
 optdepends=('noto-fonts-sc: display some Chinese characters'
             'lib32-nvidia-utils: required for nvidia graphics card')
 conflicts=('deepin-wechat')
@@ -22,13 +22,15 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "$_mirror_lib/o/openldap/libldap-2.4-2_2.4.47+dfsg.4-1+eagle_i386.deb"
   "$_mirror_lib/c/cyrus-sasl2/libsasl2-2_2.1.27.1-1+dde_i386.deb"
   "run.sh"
-  "reg.patch")
+  "https://github.com/vufa/deepin-wine-wechat-arch/raw/action/mmmojo.dll"
+  "https://github.com/vufa/deepin-wine-wechat-arch/raw/action/mmmojo_64.dll")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         '4f374b1a0961dc7ca734db90ebc5e635'
+         '3efd527ee04c027f401e3b0a460242c2'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
-         '1a98e0a0ba0d740115e9e62523104011'
-         '05b05416ef1fa4e1baaf64736e15a057')
+         '758b560950adccb5778a7347410efcf6'
+         'e8296fadc17b303dd5c77e4a05677ebd'
+         '2aa6b65bd19bbde32432ea06c28cc33d')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -52,9 +54,12 @@ build() {
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepinwechatdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Copying latest WeChat installer to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."
   install -m644 "${srcdir}/${wechat_installer}-${pkgver}.exe" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"
-  msg "Creating 'XPlugin/Plugins/XWeb' to forbid wechat browser creating crash logs ..."
-  mkdir -p "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/"
-  touch "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/XWeb"
+  msg "Copying mmmojo.dll and mmmojo_64.dll to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."
+  install -m644 "${srcdir}/mmmojo.dll" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"  
+  install -m644 "${srcdir}/mmmojo_64.dll" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"  
+  #msg "Creating 'XPlugin/Plugins/XWeb' to forbid wechat browser creating crash logs ..."
+  #mkdir -p "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/"
+  #touch "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/XWeb"
   #find -L "${srcdir}/deepinwechatdir/dosdevices" -maxdepth 1 -type l -delete
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepinwechatdir/*"

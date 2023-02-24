@@ -11,7 +11,7 @@ BOTTLENAME="Deepin-WeChat"
 APPVER="3.4.0.38deepin6"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
 WECHAT_FONTS="$WINEPREFIX/drive_c/windows/Fonts"
-WECHAT_VER="3.8.1.26"
+WECHAT_VER="3.9.0.28"
 EXEC_PATH="c:/Program Files/Tencent/WeChat/WeChat.exe"
 EXEC_FILE="$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/WeChat.exe"
 START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
@@ -64,6 +64,7 @@ DeployApp() {
         cp -n $HOME/.deepinwine/.wechat_tmp/* $WECHAT_FONTS/
         rm -rf "$HOME/.deepinwine/.wechat_tmp"
     fi
+
     touch $WINEPREFIX/reinstalled
     msg 0 "Creating $WINEPREFIX/PACKAGE_VERSION ..."
     cat /opt/apps/$DEB_PACKAGE_NAME/files/files.md5sum >$WINEPREFIX/PACKAGE_VERSION
@@ -91,9 +92,19 @@ Run() {
         fi
 
         if [ -z "${EXEC_PATH##*.lnk*}" ]; then
+            # copy mmmojo.dll and mmmojo_64.dll
+            msg 0 "Copying mmmojo.dll and mmmojo_64.dll to $WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+            cp -f "$WINEPREFIX/drive_c/Program Files/Tencent/mmmojo.dll" "$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+            cp -f "$WINEPREFIX/drive_c/Program Files/Tencent/mmmojo_64.dll" "$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+
             msg 0 "Launching  $EXEC_PATH lnk file ..."
             $START_SHELL_PATH $BOTTLENAME $APPVER "C:/windows/command/start.exe" "/Unix" "$EXEC_PATH" "$@"
         else
+            # copy mmmojo.dll and mmmojo_64.dll
+            msg 0 "Copying mmmojo.dll and mmmojo_64.dll to $WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+            cp -f "$WINEPREFIX/drive_c/Program Files/Tencent/mmmojo.dll" "$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+            cp -f "$WINEPREFIX/drive_c/Program Files/Tencent/mmmojo_64.dll" "$WINEPREFIX/drive_c/Program Files/Tencent/WeChat/[$WECHAT_VER]/"
+
             msg 0 "Launching  $EXEC_PATH ..."
             $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" "$@"
         fi

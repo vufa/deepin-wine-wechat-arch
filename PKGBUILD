@@ -5,7 +5,7 @@ pkgver=3.9.0.28
 wechat_installer=WeChatSetup
 deepinwechatver=3.4.0.38deepin6
 debpkgname="com.qq.weixin.deepin"
-pkgrel=2
+pkgrel=3
 pkgdesc="Tencent WeChat on Deepin Wine(${debpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://weixin.qq.com/"
@@ -59,9 +59,9 @@ build() {
   msg "Copying mmmojo.dll and mmmojo_64.dll to ${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/ ..."
   install -m644 "${srcdir}/mmmojo.dll" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"  
   install -m644 "${srcdir}/mmmojo_64.dll" "${srcdir}/deepinwechatdir/drive_c/Program Files/Tencent/"  
-  #msg "Creating 'XPlugin/Plugins/XWeb' to forbid wechat browser creating crash logs ..."
-  #mkdir -p "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/"
-  #touch "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/XWeb"
+  msg "Creating 'XPlugin/Plugins/XWeb' to forbid wechat browser creating crash logs ..."
+  mkdir -p "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/"
+  touch "${srcdir}/deepinwechatdir/drive_c/users/@current_user@/Application Data/Tencent/WeChat/XPlugin/Plugins/XWeb"
   #find -L "${srcdir}/deepinwechatdir/dosdevices" -maxdepth 1 -type l -delete
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepinwechatdir/*"

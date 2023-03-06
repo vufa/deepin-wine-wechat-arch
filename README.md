@@ -40,8 +40,8 @@ Deepin 打包的微信容器(`com.qq.weixin.deepin`)移植到 Archlinux，包含
   - [GNOME 桌面上的托盘图标](#gnome-桌面上的托盘图标)
   - [消除阴影边框](#消除阴影边框)
   - [唤出已运行的 WeChat 窗口](#唤出已运行的-wechat-窗口)
-    - [旧方法：](#旧方法)
-    - [新方法：](#新方法)
+    - [方法1](#方法1)
+    - [方法2](#方法2)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
@@ -132,7 +132,7 @@ dpi，系统版本，目录映射等可以在 `winecfg` 进行设置，打开 `w
 
 |      微信版本       |   wine    |   兼容性   |                             备注                             | deepin-wine | 兼容性 |                             备注                             |
 | :-----------------: | :-------: | :--------: | :----------------------------------------------------------: | :---------: | :----: | :----------------------------------------------------------: |
-|     3.9.0.28-2~     |     \     |     \      |                              \                               | 6.0.0.42-1  |  部分  |                          截图不可用                          |
+|     3.9.0.28-2~     |     \     |     \      |                              \                               | 6.0.0.42-1  |  部分  | 截图不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
 |  3.8.0.41~3.8.1.26  |     \     |     \      |                              \                               | 6.0.0.39-1  |  部分  | 截图不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
 |  3.7.0.30~3.7.6.44  |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 截图和表情包不可用，内置浏览器出现问题([#225](https://github.com/vufa/deepin-wine-wechat-arch/issues/225)) |
 |  3.5.0.46~3.7.0.30  |     \     |     \      |                              \                               | 6.0.0.24-1  |  部分  | 小程序和公众号可用，截图([#192](https://github.com/vufa/deepin-wine-wechat-arch/issues/192))和表情包不可用([#177](https://github.com/vufa/deepin-wine-wechat-arch/issues/188)) |
@@ -241,7 +241,7 @@ DEEPIN_WINE_SCALE=1.25
 
 ### 唤出已运行的 WeChat 窗口
 
-#### 旧方法：
+#### 方法1
 
 运行命令：
 
@@ -251,7 +251,9 @@ DEEPIN_WINE_SCALE=1.25
 
 可以参考 [deepin-wine-wechat-arch#96](https://github.com/vufa/deepin-wine-wechat-arch/issues/96) 和 [deepin-wine-wechat-arch#263](https://github.com/vufa/deepin-wine-wechat-arch/issues/263) 将该命令存入脚本并添加到全局快捷键中，方便使用
 
-#### 新方法：
+#### 方法2
+
+> 由 [thep0y](https://github.com/thep0y) 提供
 
 点击图标时如果已有正在运行的实例会导致错误的 kill，原因是`/opt/deepinwine/tools/kill.sh`中：
 

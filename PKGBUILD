@@ -26,7 +26,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${deepinw
   "mmmojo.dll"
   "mmmojo_64.dll")
 md5sums=('6c4edb108a0593bab7a556a6c9e8a012'
-         '3efd527ee04c027f401e3b0a460242c2'
+         '17a215a93b3b24741fb2f4356b94654d'
          'cf87ad9db0bf279ddf9e5c1dce64a716'
          '89b10711889f52ab0a386f37b4eb3212'
          '758b560950adccb5778a7347410efcf6'

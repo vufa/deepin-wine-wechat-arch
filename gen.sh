@@ -34,15 +34,63 @@ MD5() {
     done
 }
 
+Update() {
+    if [ -z $1 ]; then
+        echo "Please input the new WeChat version"
+        exit 1
+    fi
+
+    # Get variables from PKGBUILD
+    . ./PKGBUILD
+
+    # Some variables
+    local old_pkgver=$pkgver
+    local new_pkgver=$1
+
+    local old_run_sh_md5=$(md5sum run.sh | awk '{print $1}')
+    local new_run_sh_md5=""
+
+    local old_wechat_md5=""
+    local new_wechat_md5=""
+
+    local download_url=""
+    for i in "${!source[@]}"; do
+        if [[ ${source[$i]} =~ ^.*\.exe$ ]]; then
+            download_url=$(echo ${source[$i]} | awk -F '::' '{print $2}')
+            old_wechat_md5=${md5sums[$i]}
+            break
+        fi
+    done
+    new_wechat_md5=$(curl -L $download_url | md5sum | awk '{print $1}')
+
+
+    # Update run.sh
+    sed -i "s/^WECHAT_VER=\"$old_pkgver\"$/WECHAT_VER=\"$new_pkgver\"/g" run.sh
+    new_run_sh_md5=$(md5sum run.sh | awk '{print $1}')
+
+    # Update PKGBUILD
+    sed -i "s/^pkgver=$old_pkgver$/pkgver=$new_pkgver/g" PKGBUILD
+    sed -i "s/$old_run_sh_md5/$new_run_sh_md5/g" PKGBUILD
+    sed -i "s/$old_wechat_md5/$new_wechat_md5/g" PKGBUILD
+
+    # Update .SRCINFO
+    GenSrcInfo
+
+    # Update README.md
+    sed -i "s/\(<img src=\"https:\/\/img.shields.io\/badge\/WeChat-\)$old_pkgver/\1$new_pkgver/g" README.md
+    sed -i "/^- [0-9-]\{10\} WeChat-$old_pkgver$/i - $(date "+%Y-%m-%d") WeChat-$new_pkgver" README.md
+}
+
 HelpApp() {
     echo " Extra Commands:"
-    echo " -p/--patch          Generate patch files between reg_tmp/ and reg_tmp_fixed/"
-    echo " -e/--extract        Extract reg files from reg_files.tar.bz2 to dir reg_tmp_fixed/"
-    echo " -g/--gen            Generate AUR package info to .SRCINFO"
-    echo " -c/--clean          Clean files which not track by git"
-    echo " -t/--tar            Package reg files"
-    echo " -m/--md5            Generate the md5 file of each package"
-    echo " -h/--help           Show program help info"
+    echo " -p/--patch               Generate patch files between reg_tmp/ and reg_tmp_fixed/"
+    echo " -e/--extract             Extract reg files from reg_files.tar.bz2 to dir reg_tmp_fixed/"
+    echo " -g/--gen                 Generate AUR package info to .SRCINFO"
+    echo " -c/--clean               Clean files which not track by git"
+    echo " -t/--tar                 Package reg files"
+    echo " -m/--md5                 Generate the md5 file of each package"
+    echo " -u/--update <version>    Update project file according to the new WeChat version"
+    echo " -h/--help                Show program help info"
 }
 
 if [ -z $1 ]; then
@@ -68,6 +116,9 @@ case $1 in
     ;;
 "-m" | "--md5")
     MD5
+    ;;
+"-u" | "--update")
+    Update $2
     ;;
 "-h" | "--help")
     HelpApp

@@ -51,17 +51,22 @@ Update() {
     local new_run_sh_md5=""
 
     local old_wechat_md5=""
-    local new_wechat_md5=""
+    local new_wechat_md5=$2
 
-    local download_url=""
     for i in "${!source[@]}"; do
-        if [[ ${source[$i]} =~ ^.*\.exe$ ]]; then
-            download_url=$(echo ${source[$i]} | awk -F '::' '{print $2}')
-            old_wechat_md5=${md5sums[$i]}
-            break
+        if [[ ${source[$i]} != *"$wechat_installer.exe" ]]; then
+            continue
+        fi
+
+        old_wechat_md5=${md5sums[$i]}
+
+        # If $new_wechat_md5 is set, use it directly
+        # Used in cronjob workflow to avoid download the file again
+        if [ -z $new_wechat_md5 ]; then
+            local download_url=$(echo ${source[$i]} | awk -F '::' '{print $2}')
+            new_wechat_md5=$(curl -L $download_url | md5sum | awk '{print $1}')
         fi
     done
-    new_wechat_md5=$(curl -L $download_url | md5sum | awk '{print $1}')
 
 
     # Update run.sh
@@ -118,7 +123,7 @@ case $1 in
     MD5
     ;;
 "-u" | "--update")
-    Update $2
+    Update $2 $3
     ;;
 "-h" | "--help")
     HelpApp

@@ -1,0 +1,76 @@
+name: CronJob
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  get_wechat_info:
+    name: Get Wechat Info
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.powershell.outputs.version }}
+      md5: ${{ steps.powershell.outputs.md5 }}
+    steps:
+      - name: Execute PowerShell commands
+        id: powershell
+        shell: pwsh
+        run: |
+          $SetupFilePath="$Env:TEMP\WeChatSetup.exe"
+          $InstalledFilePath="${Env:ProgramFiles(x86)}\Tencent\WeChat"
+
+          Write-Output "Downloading latest WeChat install package..."
+          Invoke-WebRequest -Uri "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe" -OutFile $SetupFilePath
+
+          Write-Output "Installing WeChat..."
+          Start-Process -FilePath $SetupFilePath -ArgumentList "/S" -Wait
+
+          $Version=(Get-ChildItem -Path $InstalledFilePath -Filter "[*]" -Directory -Name).Trim("[]")
+          $Md5=(Get-FileHash -Path $SetupFilePath -Algorithm MD5).Hash.ToLower()
+
+          Write-Output "Latest WeChat info:"
+          Write-Output "  - version: $Version"
+          Write-Output "  - md5: $Md5"
+
+          Write-Output "version=$Version" >> $Env:GITHUB_OUTPUT
+          Write-Output "md5=$Md5" >> $Env:GITHUB_OUTPUT
+
+  run_update_script:
+    name: Run Update Script
+    needs: get_wechat_info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run gen.sh with version
+        uses: vufa/arch-makepkg-action@master
+        with:
+          scripts: |
+            echo "Latest WeChat info:";
+            echo "  - version: ${{ needs.get_wechat_info.outputs.version }}";
+            echo "  - md5: ${{ needs.get_wechat_info.outputs.md5 }}";
+            ./gen.sh -u ${{ needs.get_wechat_info.outputs.version }} ${{ needs.get_wechat_info.outputs.md5 }}
+
+      - name: Set owner of working dir recursively (Linux)
+        run: sudo chown -R $USER:$USER .
+
+      - name: Check git status
+        id: status
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Project file has been modified";
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create pull request if changed
+        if: steps.status.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Update WeChat version to ${{ needs.get_wechat_info.outputs.version }}
+          commit-message: Update WeChat version to ${{ needs.get_wechat_info.outputs.version }}
+          base: action
+          branch: update-${{ needs.get_wechat_info.outputs.version }}
+          delete-branch: true
+          branch-suffix: timestamp
